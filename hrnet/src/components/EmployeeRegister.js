@@ -25,11 +25,11 @@ return(
              <div className='dates'>
                  <div>
                      <label htmlFor="date-of-birth">Date of Birth</label>
-                     <calendar type="date" id="date-of-birth" name="dateOfBirth" />
+                     <input type="date" id="date-of-birth" name="dateOfBirth" />
                  </div>
                  <div>
                      <label htmlFor="start-date">Start Date</label>
-                     <calendar type="date" id="start-date" name="startDate"/>
+                     <input type="date" id="start-date" name="startDate"/>
                  </div>
              </div>
 
@@ -57,7 +57,7 @@ return(
                  </div>
              </fieldset>
              <div className='btn-save'>
-                 <button type="submit" text="Save" />
+                 <button type="submit">Save</button>
              </div>
          </form>       
      </div> 
