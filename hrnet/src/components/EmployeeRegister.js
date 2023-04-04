@@ -1,4 +1,19 @@
+import React, {useState} from 'react'
+
 const EmployeeRegister = () => {
+
+    const [employee, setEmployee] = useState({
+        firstName: "",
+        lastName: ""
+    })
+
+    const handleChange = (e) => {
+        setEmployee({
+            ...employee,
+            [e.target.name]: e.target.value,
+        })
+        console.log(employee)
+    }
 
 return(
 
@@ -16,11 +31,11 @@ return(
          <form>
              <div className='inputbox first'>
                  <label htmlFor="first-name">First Name</label>
-                 <input type="text" id="first-name" name="firstName"  /> 
+                 <input type="text" id="first-name" name="firstName" onChange={handleChange} /> 
              </div>
              <div className='inputbox last'>
                  <label htmlFor="last-name">Last Name</label>
-                 <input type="text" id="last-name" name="lastName" />
+                 <input type="text" id="last-name" name="lastName" onChange={handleChange} />
              </div>
              <div className='dates'>
                  <div>
