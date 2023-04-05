@@ -15,6 +15,14 @@ const EmployeeRegister = () => {
         console.log(employee)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        localStorage.setItem('employees', JSON.stringify([employee]));
+
+        const employees = JSON.parse(localStorage.getItem('employees')) || [];
+        console.log(employees)
+    }
+
 return(
 
 <div>
@@ -28,7 +36,7 @@ return(
         </div>   
     </div>
     <div className="form-container">
-         <form>
+         <form onSubmit={handleSubmit}>
              <div className='inputbox first'>
                  <label htmlFor="first-name">First Name</label>
                  <input type="text" id="first-name" name="firstName" onChange={handleChange} /> 
