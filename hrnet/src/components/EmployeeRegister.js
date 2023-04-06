@@ -17,9 +17,8 @@ const EmployeeRegister = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        localStorage.setItem('employees', JSON.stringify([employee]));
-
         const employees = JSON.parse(localStorage.getItem('employees')) || [];
+        localStorage.setItem('employees', JSON.stringify([...employees, employee]));       
         console.log(employees)
     }
 
