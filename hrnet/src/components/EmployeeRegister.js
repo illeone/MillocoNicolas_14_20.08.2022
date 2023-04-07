@@ -4,7 +4,14 @@ const EmployeeRegister = () => {
 
     const [employee, setEmployee] = useState({
         firstName: "",
-        lastName: ""
+        lastName: "",
+        dateOfBirth: "",
+        startDate: "",
+        street: "",
+        city: "",
+        state: "",
+        zipCode: "",
+        department: ""
     })
 
     const handleChange = (e) => {
@@ -47,11 +54,11 @@ return(
              <div className='dates'>
                  <div>
                      <label htmlFor="date-of-birth">Date of Birth</label>
-                     <input type="date" id="date-of-birth" name="dateOfBirth" />
+                     <input type="date" id="date-of-birth" name="dateOfBirth" onChange={handleChange} />
                  </div>
                  <div>
                      <label htmlFor="start-date">Start Date</label>
-                     <input type="date" id="start-date" name="startDate"/>
+                     <input type="date" id="start-date" name="startDate" onChange={handleChange} />
                  </div>
              </div>
 
@@ -59,23 +66,23 @@ return(
                  <legend>Address</legend>
                  <div>
                      <label htmlFor="street">Street</label>
-                     <input type="text" id="street" name="street" />
+                     <input type="text" id="street" name="street" onChange={handleChange} />
                  </div>
                  <div>
                      <label htmlFor="city">City</label>
-                     <input type="text" id="city" name="city" />
+                     <input type="text" id="city" name="city" onChange={handleChange} />
                  </div>
                  <div>
                  <p className="state-label">State</p>
-                     <select name="state"/>
+                     <select name="state" onChange={handleChange}/>
                  </div>
                  <div>
                      <label htmlFor="zip-code">Zip Code</label>
-                     <input type="number" name="zipCode" />
+                     <input type="number" name="zipCode" onChange={handleChange} />
                  </div>
                  <div>
                  <p className="department-label">Department</p>
-                     <select name="department"/>
+                     <select name="department" onChange={handleChange}/>
                  </div>
              </fieldset>
              <div className='btn-save'>
