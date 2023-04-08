@@ -1,6 +1,14 @@
 import React, {useState} from 'react'
+import {states, departments} from '../data/data'
 
 const EmployeeRegister = () => {
+
+    const optionsState = states.map((state, index) => 
+        <option key={index} value={state.value}>{state.label}</option>
+    )
+    const optionsDepartments = departments.map((department, index) => 
+        <option key={index} value={department.value}>{department.label}</option>
+    )
 
     const [employee, setEmployee] = useState({
         firstName: "",
@@ -73,16 +81,22 @@ return(
                      <input type="text" id="city" name="city" onChange={handleChange} />
                  </div>
                  <div>
-                 <p className="state-label">State</p>
-                     <select name="state" onChange={handleChange}/>
+                    <label htmlFor="state-label">State</label>
+                    <select name="state" id="state" onChange={handleChange} >
+                        <option>Please select a state</option>
+                        {optionsState}
+                    </select>
                  </div>
                  <div>
                      <label htmlFor="zip-code">Zip Code</label>
                      <input type="number" name="zipCode" onChange={handleChange} />
                  </div>
                  <div>
-                 <p className="department-label">Department</p>
-                     <select name="department" onChange={handleChange}/>
+                     <label htmlFor="department-label">Department</label>
+                     <select name="department" id="department" onChange={handleChange} >
+                        <option>Please select a department</option>
+                        {optionsDepartments}
+                     </select>
                  </div>
              </fieldset>
              <div className='btn-save'>
