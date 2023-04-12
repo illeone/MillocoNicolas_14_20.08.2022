@@ -32,10 +32,15 @@ const EmployeeRegister = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const employees = JSON.parse(localStorage.getItem('employees')) || [];
-        localStorage.setItem('employees', JSON.stringify([...employees, employee]));       
-        console.log(employees)
-    }
+      
+        const employees = JSON.parse(localStorage.getItem("employees")) || [];
+      
+        if (!employee.firstName || !employee.lastName || !employee.dateOfBirth || !employee.startDate || !employee.street || !employee.city || !employee.state || !employee.zipCode || !employee.department ) {
+          alert("Veuillez remplir tous les champs obligatoires.");
+        } else {
+          localStorage.setItem("employees", JSON.stringify([...employees, employee]));
+        }
+      }
 
 return(
 
