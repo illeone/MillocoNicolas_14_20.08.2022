@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import { NavLink } from "react-router-dom";
+
 import {states, departments} from '../data/data'
 import Modal from './Modal'
 
@@ -69,9 +71,11 @@ return(
             <h1>HRnet</h1>
         </div>
         <div className="create-employee"><h2>Create Employee</h2></div>
-        <div className="container-employees">
-            <a href="employee-list.html">View Current Employees</a>
-        </div>   
+        <NavLink to={"/List"} style={{ textDecoration: 'none' }}>
+            <div className="container-employees">
+                <a href="employee-list.html">View Current Employees</a>
+            </div>  
+        </NavLink> 
     </div>
     <div className="form-container">
          <form onSubmit={handleSubmit}>
