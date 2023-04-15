@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Table from "./Table";
 
 const EmployeeList = () => {
   return (
@@ -16,6 +17,9 @@ const EmployeeList = () => {
             <a href="employee-list.html">Create Employee</a>
             </div>
         </NavLink>
+      </div>
+      <div>
+        <Table />
       </div>
 
       <footer className="footer"></footer>
