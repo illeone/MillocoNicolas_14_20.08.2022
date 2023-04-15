@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {states, departments} from '../data/data'
+import Modal from './Modal'
 
 const EmployeeRegister = () => {
 
@@ -22,6 +23,23 @@ const EmployeeRegister = () => {
         department: ""
     })
 
+    const [showModal, setShowModal] = useState(false)
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setEmployee({
+          firstName: "",
+          lastName: "",
+          dateOfBirth: "",
+          startDate: "",
+          street: "",
+          city: "",
+          state: "",
+          zipCode: "",
+          department: ""
+        });
+    };
+
     const handleChange = (e) => {
         setEmployee({
             ...employee,
@@ -39,6 +57,7 @@ const EmployeeRegister = () => {
           alert("Veuillez remplir tous les champs obligatoires.");
         } else {
           localStorage.setItem("employees", JSON.stringify([...employees, employee]));
+          setShowModal(true)
         }
       }
 
@@ -58,20 +77,20 @@ return(
          <form onSubmit={handleSubmit}>
              <div className='inputbox first'>
                  <label htmlFor="first-name">First Name</label>
-                 <input type="text" id="first-name" name="firstName" onChange={handleChange} /> 
+                 <input type="text" id="first-name" name="firstName" onChange={handleChange} value={employee.firstName} /> 
              </div>
              <div className='inputbox last'>
                  <label htmlFor="last-name">Last Name</label>
-                 <input type="text" id="last-name" name="lastName" onChange={handleChange} />
+                 <input type="text" id="last-name" name="lastName" onChange={handleChange} value={employee.lastName} />
              </div>
              <div className='dates'>
                  <div>
                      <label htmlFor="date-of-birth">Date of Birth</label>
-                     <input type="date" id="date-of-birth" name="dateOfBirth" onChange={handleChange} />
+                     <input type="date" id="date-of-birth" name="dateOfBirth" onChange={handleChange} value={employee.dateOfBirth} />
                  </div>
                  <div>
                      <label htmlFor="start-date">Start Date</label>
-                     <input type="date" id="start-date" name="startDate" onChange={handleChange} />
+                     <input type="date" id="start-date" name="startDate" onChange={handleChange} value={employee.startDate} />
                  </div>
              </div>
 
@@ -79,26 +98,26 @@ return(
                  <legend>Address</legend>
                  <div>
                      <label htmlFor="street">Street</label>
-                     <input type="text" id="street" name="street" onChange={handleChange} />
+                     <input type="text" id="street" name="street" onChange={handleChange} value={employee.street} />
                  </div>
                  <div>
                      <label htmlFor="city">City</label>
-                     <input type="text" id="city" name="city" onChange={handleChange} />
+                     <input type="text" id="city" name="city" onChange={handleChange} value={employee.city} />
                  </div>
                  <div>
                     <label htmlFor="state-label">State</label>
-                    <select name="state" id="state" onChange={handleChange} >
+                    <select name="state" id="state" onChange={handleChange} value={employee.state} >
                         <option>Please select a state</option>
                         {optionsState}
                     </select>
                  </div>
                  <div>
                      <label htmlFor="zip-code">Zip Code</label>
-                     <input type="number" name="zipCode" onChange={handleChange} />
+                     <input type="number" name="zipCode" onChange={handleChange} value={employee.zipCode} />
                  </div>
                  <div>
                      <label htmlFor="department-label">Department</label>
-                     <select name="department" id="department" onChange={handleChange} >
+                     <select name="department" id="department" onChange={handleChange} value={employee.department}>
                         <option>Please select a department</option>
                         {optionsDepartments}
                      </select>
@@ -109,6 +128,7 @@ return(
              </div>
          </form>       
      </div> 
+     <Modal showModal={showModal} textContent="Profile created with success !" onClose={handleCloseModal} />
  </div>
 )
 }
