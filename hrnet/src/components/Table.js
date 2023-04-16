@@ -10,16 +10,47 @@ const getInitialRows = () => {
 
 const Table = () => {
   const [rows, setRows] = useState([]);
+  const [sortField, setSortField] = useState("");
+  const [sortAscending, setSortAscending] = useState(true);
 
   useEffect(() => {
     setRows(getInitialRows());
   }, []);
 
-  const renderTableHeader = (label) => (
-    <th>
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortAscending(!sortAscending);
+    } else {
+      setSortField(field);
+      setSortAscending(true);
+    }
+  };
+
+  const renderTableHeader = (label, field) => (
+    <th
+      onClick={() => handleSort(field)}
+      title="Click to sort in ascending or descending order"
+    >
       {label}
     </th>
   );
+
+  const sortedRows = rows
+    .sort((a, b) => {
+      if (sortField === "") {
+        return 0;
+      }
+      const valueA = a[sortField];
+      const valueB = b[sortField];
+      if (valueA < valueB) {
+        return sortAscending ? -1 : 1;
+      }
+      if (valueA > valueB) {
+        return sortAscending ? 1 : -1;
+      }
+      return 0;
+    });
+
 
   return (
     <div className="wrapper">
@@ -28,19 +59,19 @@ const Table = () => {
           <table>
             <thead>
               <tr>
-                {renderTableHeader("First Name")}
-                {renderTableHeader("Last Name")}
-                {renderTableHeader("Start Date")}
-                {renderTableHeader("Department")}
-                {renderTableHeader("Date of Birth")}
-                {renderTableHeader("Street")}
-                {renderTableHeader("City")}
-                {renderTableHeader("State")}
-                {renderTableHeader("Zip Code")}
+                {renderTableHeader("First Name", "firstName")}
+                {renderTableHeader("Last Name", "lastName")}
+                {renderTableHeader("Start Date", "startDate")}
+                {renderTableHeader("Department", "department")}
+                {renderTableHeader("Date of Birth", "birthDate")}
+                {renderTableHeader("Street", "street")}
+                {renderTableHeader("City", "city")}
+                {renderTableHeader("State", "state")}
+                {renderTableHeader("Zip Code", "zipCode")}
               </tr>
             </thead>
             <tbody>
-              {rows.map((row) => (
+              {sortedRows.map((row) => (
                 <tr className="employee-table-row">
                   <td>{row.firstName}</td>
                   <td>{row.lastName}</td>
