@@ -12,6 +12,8 @@ const Table = () => {
   const [rows, setRows] = useState([]);
   const [sortField, setSortField] = useState("");
   const [sortAscending, setSortAscending] = useState(true);
+  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     setRows(getInitialRows());
@@ -51,6 +53,12 @@ const Table = () => {
       return 0;
     });
 
+  const pageCount = Math.ceil(sortedRows.length / pageSize);
+
+  const displayedRows = sortedRows.slice(
+    currentPage * pageSize,
+    (currentPage + 1) * pageSize
+  );
 
   return (
     <div className="wrapper">
@@ -71,7 +79,7 @@ const Table = () => {
               </tr>
             </thead>
             <tbody>
-              {sortedRows.map((row) => (
+              {displayedRows.map((row) => (
                 <tr className="employee-table-row">
                   <td>{row.firstName}</td>
                   <td>{row.lastName}</td>
@@ -87,9 +95,42 @@ const Table = () => {
             </tbody>
           </table>
         </div>
+        <div className="employee-table-controls">
+          <div className="employee-table-bottom-right">
+            <div className="pagination">
+              <button
+                className="pagination-button"
+                onClick={() => setCurrentPage(currentPage - 1)}
+                disabled={currentPage === 0}
+              >
+                &laquo;
+              </button>
+              {Array.from({ length: pageCount }, (_, index) => (
+                <button
+                  key={index}
+                  className={`pagination-button${
+                    currentPage === index ? " active" : ""
+                  }`}
+                  onClick={() => setCurrentPage(index)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              <button
+                className="pagination-button"
+                onClick={() => setCurrentPage(currentPage + 1)}
+                disabled={currentPage === pageCount - 1}
+              >
+                &raquo;
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Table;
+
+           
