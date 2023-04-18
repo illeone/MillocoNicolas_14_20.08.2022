@@ -8,16 +8,66 @@ const getInitialRows = () => {
   return [];
 };
 
+const addUniqueId = (rows) => {
+  return rows.map((row, index) => ({ ...row, id: index }));
+};
+
 const Table = () => {
   const [rows, setRows] = useState([]);
   const [sortField, setSortField] = useState("");
   const [sortAscending, setSortAscending] = useState(true);
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
+  const [selectedRows, setSelectedRows] = useState(new Set());
 
   useEffect(() => {
-    setRows(getInitialRows());
+    const initialRows = getInitialRows();
+    const rowsWithId = addUniqueId(initialRows); // Ajoute un identifiant unique à chaque ligne
+    setRows(rowsWithId);
   }, []);
+
+  useEffect(() => {
+    setSelectedRows(new Set());
+  }, [currentPage]);
+
+  useEffect(() => {
+    setSelectAll(false);
+  }, [currentPage]);
+
+  const updateLocalStorage = (newRows) => {
+    const rowsWithoutId = newRows.map(({ id, ...rest }) => rest);
+    localStorage.setItem("employees", JSON.stringify(rowsWithoutId));
+  };
+
+  const handleDelete = () => {
+    const newSelectedRows = new Set(selectedRows);
+    const newRows = rows.filter((row) => !newSelectedRows.has(row.id));
+    setRows(newRows);
+    setSelectedRows(new Set());
+    updateLocalStorage(newRows);
+  };
+
+  const handleSelect = (id) => {
+    const newSelectedRows = new Set(selectedRows);
+    if (newSelectedRows.has(id)) {
+      newSelectedRows.delete(id);
+    } else {
+      newSelectedRows.add(id);
+    }
+    setSelectedRows(newSelectedRows);
+  };
+
+  const [selectAll, setSelectAll] = useState(false);
+
+  const handleSelectAll = () => {
+    if (selectAll) {
+      setSelectedRows(new Set());
+      setSelectAll(false);
+    } else {
+      setSelectedRows(new Set(displayedRows.map((row) => row.id)));
+      setSelectAll(true);
+    }
+  };
 
   const handleSort = (field) => {
     if (sortField === field) {
@@ -67,6 +117,13 @@ const Table = () => {
           <table>
             <thead>
               <tr>
+                <th className="col-select" onClick={handleSelectAll}>
+                  <input
+                    type="checkbox"
+                    checked={selectAll}
+                    onChange={handleSelectAll}
+                  />
+                </th>
                 {renderTableHeader("First Name", "firstName")}
                 {renderTableHeader("Last Name", "lastName")}
                 {renderTableHeader("Start Date", "startDate")}
@@ -81,6 +138,13 @@ const Table = () => {
             <tbody>
               {displayedRows.map((row) => (
                 <tr className="employee-table-row">
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.has(row.id)}
+                      onChange={() => handleSelect(row.id)}
+                    />
+                  </td>
                   <td>{row.firstName}</td>
                   <td>{row.lastName}</td>
                   <td>{row.startDate}</td>
@@ -96,6 +160,20 @@ const Table = () => {
           </table>
         </div>
         <div className="employee-table-controls">
+          <div className="employee-table-bottom-left">
+            <button
+              className="employee-table-button"
+              onClick={handleDelete}
+              style={{
+                display: selectedRows.size > 0 ? "inline-block" : "none",
+              }}
+            >
+              <span className="employee-table-button-content">
+                <i className="fas fa-trash-alt icon"></i>
+                <span>Delete</span>
+              </span>
+            </button>
+          </div>
           <div className="employee-table-bottom-right">
             <div className="pagination">
               <button
@@ -108,9 +186,7 @@ const Table = () => {
               {Array.from({ length: pageCount }, (_, index) => (
                 <button
                   key={index}
-                  className={`pagination-button${
-                    currentPage === index ? " active" : ""
-                  }`}
+                  className="pagination-button"
                   onClick={() => setCurrentPage(index)}
                 >
                   {index + 1}
@@ -132,5 +208,3 @@ const Table = () => {
 };
 
 export default Table;
-
-           
