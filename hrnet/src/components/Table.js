@@ -87,21 +87,20 @@ const Table = () => {
     </th>
   );
 
-  const sortedRows = rows
-    .sort((a, b) => {
-      if (sortField === "") {
-        return 0;
-      }
-      const valueA = a[sortField];
-      const valueB = b[sortField];
-      if (valueA < valueB) {
-        return sortAscending ? -1 : 1;
-      }
-      if (valueA > valueB) {
-        return sortAscending ? 1 : -1;
-      }
+  const sortedRows = rows.sort((a, b) => {
+    if (sortField === "") {
       return 0;
-    });
+    }
+    const valueA = a[sortField];
+    const valueB = b[sortField];
+    if (valueA < valueB) {
+      return sortAscending ? -1 : 1;
+    }
+    if (valueA > valueB) {
+      return sortAscending ? 1 : -1;
+    }
+    return 0;
+  });
 
   const pageCount = Math.ceil(sortedRows.length / pageSize);
 
@@ -113,6 +112,23 @@ const Table = () => {
   return (
     <div className="wrapper">
       <div className="employee-table">
+        <div className="employee-table-top-left">
+          <label htmlFor="pageSize" className="search-entries">
+            Show entries:{" "}
+          </label>
+          <select
+            name="pageSize"
+            value={pageSize}
+            onChange={(event) => {
+              setPageSize(Number(event.target.value));
+              setCurrentPage(0);
+            }}
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+          </select>
+        </div>
         <div className="table-container">
           <table>
             <thead>
