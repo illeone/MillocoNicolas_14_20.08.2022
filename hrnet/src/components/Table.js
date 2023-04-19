@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import SearchBar from "./Search";
 
 const getInitialRows = () => {
   const storedData = localStorage.getItem("employees");
@@ -14,6 +15,7 @@ const addUniqueId = (rows) => {
 
 const Table = () => {
   const [rows, setRows] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [sortField, setSortField] = useState("");
   const [sortAscending, setSortAscending] = useState(true);
   const [pageSize, setPageSize] = useState(10);
@@ -45,6 +47,10 @@ const Table = () => {
     setRows(newRows);
     setSelectedRows(new Set());
     updateLocalStorage(newRows);
+  };
+
+  const handleSearch = (newSearchText) => {
+    setSearchText(newSearchText);
   };
 
   const handleSelect = (id) => {
@@ -87,20 +93,27 @@ const Table = () => {
     </th>
   );
 
-  const sortedRows = rows.sort((a, b) => {
-    if (sortField === "") {
+  const sortedRows = rows
+    .sort((a, b) => {
+      if (sortField === "") {
+        return 0;
+      }
+      const valueA = a[sortField];
+      const valueB = b[sortField];
+      if (valueA < valueB) {
+        return sortAscending ? -1 : 1;
+      }
+      if (valueA > valueB) {
+        return sortAscending ? 1 : -1;
+      }
       return 0;
-    }
-    const valueA = a[sortField];
-    const valueB = b[sortField];
-    if (valueA < valueB) {
-      return sortAscending ? -1 : 1;
-    }
-    if (valueA > valueB) {
-      return sortAscending ? 1 : -1;
-    }
-    return 0;
-  });
+    })
+    .filter((row) => {
+      return (
+        row.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
+        row.lastName.toLowerCase().includes(searchText.toLowerCase())
+      );
+    });
 
   const pageCount = Math.ceil(sortedRows.length / pageSize);
 
@@ -128,6 +141,7 @@ const Table = () => {
             <option value={10}>10</option>
             <option value={20}>20</option>
           </select>
+          <SearchBar onSearch={handleSearch} />
         </div>
         <div className="table-container">
           <table>
