@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 function DropDown({ options, onChange, value, name }) {
-  const stateOptions = options.map((option, index) => (
+  const listOptions = options.map((option, index) => (
     <MenuItem key={index} value={option.value}>
       {option.label}
     </MenuItem>
@@ -17,7 +17,7 @@ function DropDown({ options, onChange, value, name }) {
         name={name}
         className="inputbox"
       >
-        {stateOptions}
+        {listOptions}
       </Select>
     </FormControl>
   );

@@ -3,15 +3,9 @@ import { NavLink } from "react-router-dom";
 
 import {states, departments} from '../data/data'
 import Modal from './Modal'
+import DropDown from './DropDown';
 
 const EmployeeRegister = () => {
-
-    const optionsState = states.map((state, index) => 
-        <option key={index} value={state.value}>{state.label}</option>
-    )
-    const optionsDepartments = departments.map((department, index) => 
-        <option key={index} value={department.value}>{department.label}</option>
-    )
 
     const [employee, setEmployee] = useState({
         firstName: "",
@@ -109,22 +103,24 @@ return(
                      <input type="text" id="city" name="city" onChange={handleChange} value={employee.city} />
                  </div>
                  <div>
-                    <label htmlFor="state-label">State</label>
-                    <select name="state" id="state" onChange={handleChange} value={employee.state} >
-                        <option>Please select a state</option>
-                        {optionsState}
-                    </select>
+                    <p className="state-label">State</p>
+                    <DropDown name="state" 
+                            onChange={handleChange} 
+                            value={employee.state} 
+                            options={states} 
+                    />
                  </div>
                  <div>
                      <label htmlFor="zip-code">Zip Code</label>
                      <input type="number" name="zipCode" onChange={handleChange} value={employee.zipCode} />
                  </div>
                  <div>
-                     <label htmlFor="department-label">Department</label>
-                     <select name="department" id="department" onChange={handleChange} value={employee.department}>
-                        <option>Please select a department</option>
-                        {optionsDepartments}
-                     </select>
+                     <p className="department-label">Department</p>
+                     <DropDown name="department" 
+                            onChange={handleChange} 
+                            value={employee.department} 
+                            options={departments} 
+                     />  
                  </div>
              </fieldset>
              <div className='btn-save'>
