@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./Search";
+import DropDown from "./DropDown";
 
 const getInitialRows = () => {
   const storedData = localStorage.getItem("employees");
@@ -129,18 +130,22 @@ const Table = () => {
           <label htmlFor="pageSize" className="search-entries">
             Show entries:{" "}
           </label>
-          <select
-            name="pageSize"
-            value={pageSize}
-            onChange={(event) => {
-              setPageSize(Number(event.target.value));
-              setCurrentPage(0);
-            }}
-          >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-          </select>
+          <div className="custom-select-wrapper">
+              <DropDown
+                options={[
+                  { value: 5, label: "5" },
+                  { value: 10, label: "10" },
+                  { value: 20, label: "20" },
+                ]}
+                onChange={(event) => {
+                  setPageSize(Number(event.target.value));
+                  setCurrentPage(0);
+                }}
+                value={pageSize}
+                name="pageSize"
+                submit={false}
+              />
+            </div>
           <SearchBar onSearch={handleSearch} />
         </div>
         <div className="table-container">
