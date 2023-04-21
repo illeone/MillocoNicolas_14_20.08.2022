@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import {states, departments} from '../data/data'
 import Modal from './Modal'
 import DropDown from './DropDown';
+import Dates from './Calendar';
 
 const EmployeeRegister = () => {
 
@@ -83,12 +84,22 @@ return(
              </div>
              <div className='dates'>
                  <div>
-                     <label htmlFor="date-of-birth">Date of Birth</label>
-                     <input type="date" id="date-of-birth" name="dateOfBirth" onChange={handleChange} value={employee.dateOfBirth} />
+                    <label htmlFor="date-of-birth">Date of Birth</label>
+                    <Dates
+                        id="date-of-birth"
+                        name="dateOfBirth"
+                        value={employee.dateOfBirth}
+                        onChange={handleChange}
+                    />
                  </div>
                  <div>
-                     <label htmlFor="start-date">Start Date</label>
-                     <input type="date" id="start-date" name="startDate" onChange={handleChange} value={employee.startDate} />
+                    <label htmlFor="start-date">Start Date</label>
+                    <Dates 
+                        id="start-date"
+                        name="startDate"
+                        value={employee.startDate}
+                        onChange={handleChange}
+                    />
                  </div>
              </div>
 
