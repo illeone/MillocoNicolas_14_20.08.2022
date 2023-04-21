@@ -5,6 +5,7 @@ import {states, departments} from '../data/data'
 import Modal from './Modal'
 import DropDown from './DropDown';
 import Dates from './Calendar';
+import Button from './Button';
 
 const EmployeeRegister = () => {
 
@@ -135,7 +136,7 @@ return(
                  </div>
              </fieldset>
              <div className='btn-save'>
-                 <button type="submit">Save</button>
+                <Button type="submit" onClick={handleSubmit} text="Save" />    
              </div>
          </form>       
      </div> 
