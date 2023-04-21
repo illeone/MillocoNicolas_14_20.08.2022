@@ -12,6 +12,7 @@ function DropDown({ options, onChange, value, name }) {
   return (
     <FormControl fullWidth>
       <Select
+        id={`select-${name}`}
         value={value}
         onChange={onChange}
         name={name}

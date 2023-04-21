@@ -61,7 +61,7 @@ const EmployeeRegister = () => {
 
 return(
 
-<div>
+<div className="register">
     <div className="container">
         <div className="title">
             <h1>HRnet</h1>
