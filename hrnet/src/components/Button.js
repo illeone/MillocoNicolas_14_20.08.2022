@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-function Button({ text }) {
+function Button({ text, action }) {
   const buttonRef = useRef(null);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ function Button({ text }) {
   }, []);
 
   return (
-    <button ref={buttonRef} className="button smoke dark">
+    <button ref={buttonRef} onClick={action} className="button smoke dark">
       {text}
     </button>
   );

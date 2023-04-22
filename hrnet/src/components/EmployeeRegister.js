@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { NavLink } from "react-router-dom";
 
 import {states, departments} from '../data/data'
@@ -9,6 +9,8 @@ import Button from './Button';
 
 const EmployeeRegister = () => {
 
+    const [isOpen, setIsOpen] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
     const [employee, setEmployee] = useState({
         firstName: "",
         lastName: "",
@@ -20,23 +22,11 @@ const EmployeeRegister = () => {
         zipCode: "",
         department: ""
     })
+    
 
-    const [showModal, setShowModal] = useState(false)
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-        setEmployee({
-          firstName: "",
-          lastName: "",
-          dateOfBirth: "",
-          startDate: "",
-          street: "",
-          city: "",
-          state: "",
-          zipCode: "",
-          department: ""
-        });
-    };
+    useEffect(() => {
+        console.log(isOpen);
+      }, [isOpen]);
 
     const handleChange = (e) => {
         setEmployee({
@@ -48,6 +38,7 @@ const EmployeeRegister = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsSubmitted(true);
       
         const employees = JSON.parse(localStorage.getItem("employees")) || [];
       
@@ -55,9 +46,26 @@ const EmployeeRegister = () => {
           alert("Veuillez remplir tous les champs obligatoires.");
         } else {
           localStorage.setItem("employees", JSON.stringify([...employees, employee]));
-          setShowModal(true)
+          setIsOpen(true);
         }
       }
+    
+    
+    const handleModalOk = () => {
+    setEmployee({
+        firstName: "",
+        lastName: "",
+        dateOfBirth: "",
+        startDate: "",
+        street: "",
+        city: "",
+        state: "",
+        zipCode: "",
+        department: ""
+    });
+    setIsSubmitted(false);
+    setIsOpen(false);
+    };
 
 return(
 
@@ -140,7 +148,14 @@ return(
              </div>
          </form>       
      </div> 
-     <Modal showModal={showModal} textContent="Profile created with success !" onClose={handleCloseModal} />
+     <Modal 
+        isOpen={isOpen}
+        btnOk={true}
+        // btnCancelAction={() => console.log("click sur annulé")}
+        btnOkAction={handleModalOk}
+        title="Thank You !"
+        description="Profile created with success !"
+      />
  </div>
 )
 }
