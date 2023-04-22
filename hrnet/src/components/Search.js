@@ -23,7 +23,7 @@ const SearchBar = ({ onSearch }) => {
   return (
     <div className="bloc-search">
       <form
-        className="search"
+        className={`search${searchOpen ? " show-search" : ""}`}
         id="search-bar"
       >
         <input
@@ -38,7 +38,8 @@ const SearchBar = ({ onSearch }) => {
           id="search-button"
           onClick={handleToggleSearch}
         >
-          <i className="search__close" onClick={handleClear}></i>
+          <i className="search__icon ri-search-2-line"></i>
+          <i className="search__close ri-close-line" onClick={handleClear}></i>
         </div>
       </form>
     </div>
