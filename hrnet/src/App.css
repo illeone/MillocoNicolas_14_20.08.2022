@@ -483,3 +483,47 @@ td {
     width: 250px;
   }
 }
+
+/* *********************************  Pagination  ********************************* */
+
+.employee-table-bottom-right {
+  display: flex;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-top: -1rem;
+}
+
+.pagination-button {
+  background-color: white;
+  color: #333;
+  text-align: center;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-left: 5px;
+
+}
+
+.pagination-button:hover:not(.active) {
+  background-color: #00000033;
+  border-radius: 5px;
+}
+
+.pagination-button:disabled {
+  cursor: not-allowed;
+  background-color: white;
+  border-radius: 5px;
+  /* border: solid 1px #9388BD; */
+}
+
+.pagination-button.right-arrow:hover {
+  font-size: 30px;
+}
