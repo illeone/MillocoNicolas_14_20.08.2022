@@ -2,9 +2,23 @@ body .register{
  background-color:rgb(247, 244, 255);
 }
 
+/* *********************************  Header  ********************************* */
+
+.container{
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 .title {
   width: 150px;
   margin-top: 1.8rem;
+  opacity: 0;
+  animation: fadeIn 2.5s ease-in-out forwards;
 }
 
 .title h1 {
@@ -14,21 +28,57 @@ body .register{
   font-size: 42px;
 }
 
-.container{
-  display: flex;
-  justify-content: space-around;
-  align-self: center;
+@keyframes move-down {
+  to {
+    transform: translateY(0); /* Descend à la position initiale */
+  }
 }
+.create-employee {
+  font-size: 1.3rem;
+  margin-bottom: 1.rem;
+  margin-top: 2rem;
+  transform: translateY(-6rem);
+  animation-name: move-down;
+  animation-duration: 1.6s;
+  animation-fill-mode: forwards;
+}
+
+/* ******************  NavLink  ****************** */
+
+.container-employees {
+  opacity: 0;
+  animation: fadeIn 2.5s ease-in-out forwards;
+}
+
 .container-employees a {
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   width: 10em;
-  height: 7em;
+  height: 10em;
   position: relative;
   text-align: center;
   font-weight: bolder;
+  padding: 1.5em;
+  color: black;
+  border: 2px solid black;
+  border-radius: 50%;
+  transition: 0.5s transform, 0.5s border-color;
+  top: 1em;
+}
+@keyframes bounce-6 {
+  0%   { transform: scale(1,1)      translateY(0); }
+  10%  { transform: scale(1.1,.9)   translateY(0); }
+  30%  { transform: scale(.9,1.1)   translateY(0); }
+  50%  { transform: scale(1.05,.95) translateY(0); }
+  57%  { transform: scale(1,1)      translateY(0); }
+  64%  { transform: scale(1,1)      translateY(0); }
+  100% { transform: scale(1,1)      translateY(0); }
+}
+.container-employees a:hover {
+  transform: scale(1.05) translateY(-0.25em);
+  animation: bounce-6 1s ease-out forwards;
 }
 
 /* *********************************  Formulaire  ********************************* */
@@ -97,7 +147,7 @@ body .register{
   margin-bottom: 2rem;
 }
 
-/* Calendrier */
+/******************* Calendrier *******************/
 .p-inputtext {
   width: 145px !important;
   text-align: center !important;

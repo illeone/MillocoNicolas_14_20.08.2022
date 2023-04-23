@@ -74,7 +74,9 @@ return(
         <div className="title">
             <h1>HRnet</h1>
         </div>
-        <div className="create-employee"><h2>Create Employee</h2></div>
+        <div className="create-employee">
+            <h2>Create Employee</h2>
+        </div>
         <NavLink to={"/List"} style={{ textDecoration: 'none' }}>
             <div className="container-employees">
                 <a href="employee-list.html">View Current Employees</a>
