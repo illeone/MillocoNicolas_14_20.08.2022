@@ -516,6 +516,11 @@ td {
   background-color: #00000033;
   border-radius: 5px;
 }
+.pagination-button.active {
+  background-color:#0000008f;
+  color: #fff;
+  border-radius: 5px;
+}
 
 .pagination-button:disabled {
   cursor: not-allowed;

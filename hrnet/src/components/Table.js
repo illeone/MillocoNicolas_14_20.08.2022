@@ -221,7 +221,9 @@ const Table = () => {
               {Array.from({ length: pageCount }, (_, index) => (
                 <button
                   key={index}
-                  className="pagination-button"
+                  className={`pagination-button${
+                    currentPage === index ? " active" : ""
+                  }`}
                   onClick={() => setCurrentPage(index)}
                 >
                   {index + 1}
