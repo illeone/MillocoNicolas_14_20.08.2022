@@ -371,10 +371,34 @@ table {
 .employee-table-row:hover {
   background-color: #35333d34;
 }
+th,
 td {
   text-align: center;
   padding: 10px;
 }
+
+.employee-table-top-left,
+.employee-table-bottom-left,
+.employee-table-bottom-right {
+  display: flex;
+  align-items: center;
+}
+.employee-table-top-left{
+  margin-left: 2rem;
+}
+
+.employee-table-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.employee-table-bottom-right {
+  justify-content: flex-end;
+  margin-right: 2rem;
+}
+
 
 
 /* *********************************  Search  ********************************* */
@@ -532,3 +556,36 @@ td {
 .pagination-button.right-arrow:hover {
   font-size: 30px;
 }
+
+/* *********************************  Button Delete  ********************************* */
+
+.employee-table-button-delete {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  margin-top: -0.5rem;
+  margin-left: 2rem;
+}
+.employee-table-button-delete:hover {
+  background-color: rgb(31, 129, 250);
+}
+.employee-table-button-delete-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.icon {
+  margin-right: 8px;
+}
+
+
+
+
+
