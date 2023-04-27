@@ -24,6 +24,7 @@ body .employee-list-container{
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
 .title {
   width: 150px;
   margin-top: 1.8rem;
@@ -92,6 +93,9 @@ body .employee-list-container{
 .container-employees a:hover {
   transform: scale(1.05) translateY(-0.25em);
   animation: bounce-6 1s ease-out forwards;
+  color: #FDD7D5;
+  background-color: #7377B3;
+  border: none;
 }
 
 /* *********************************  Formulaire  ********************************* */
@@ -422,6 +426,133 @@ label[for="department"] {
 }
 
 /* ***************************************************  Page  EmployeeList  ***************************************************  */
+
+/* *********************************  Header EmployeeList  ********************************* */
+
+.employee-list-container .block-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 32px;
+  transition: 250ms;
+  perspective: 500px;
+  cursor: pointer;
+}
+.employee-list-container .block-container .btn-back {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: inherit;
+  height: inherit;
+  border-radius: 32px;
+  transition: 250ms;
+  /* transform-style: preserve-3d; */
+  transform-origin: bottom left;
+  transform: rotateZ(-15deg);
+  will-change: transform;
+  /* box-shadow: 16px 0 40px #e4e4e4; */
+}
+.employee-list-container .block-container .btn-back-1 {
+  background: linear-gradient(135deg, #FDD7D5 -20%,#fea19c 120%);
+}
+/* .employee-list-container .block-container .btn-back-2 {
+  background: linear-gradient(135deg, #5c46eb -20%, #013fff 120%);
+} */
+.employee-list-container .block-container .btn-front {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: inherit;
+  height: inherit;
+  border-radius: 32px;
+  background-color: #ffffff33;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: top left;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrer horizontalement le texte */
+  text-align: center; 
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); */
+  box-shadow: -3px 3px 7px hsla(222, 67%, 12%, 0.257);
+
+  background-image: url("./logo2.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 80%;
+}
+.employee-list-container .block-container:hover > .btn-back {
+  transform: translateZ(0px) rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+}
+/* .employee-list-container .block-container:hover > .btn-front {
+  transform: translateZ(0px) translateY(0px) rotateX(0deg) rotateY(0deg);
+} */
+.creased-text {
+  color: #9388BD;
+  font-size: 8px;
+  font-weight:bolder;
+}
+.block-container:hover .creased-text {
+  transition: 250ms;
+  color: transparent;
+}
+.hover-text{
+  transition: 250ms;
+  color: transparent;
+  font-size: 12px;
+  font-weight:bold;
+}
+.block-container:hover .hover-text {
+  transition: 250ms;
+  transform: translateY(130px) translateX(20px);
+  color: #9388BD;
+}
+
+
+
+
+
+
+
+
+h2.create-employee-shadow { 
+  padding: 90px 12.5px 40px;
+  transform: translateX(-50%) translateY(-45%);
+  left: 50%;
+  position: absolute;
+  width: 24rem;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  color: #fff;
+  background: linear-gradient(to bottom, #ffc9c6, rgba(147, 136, 189, 0.944));
+  box-shadow: -18px 18px 30px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  animation-name: none; /* Annuler l'animation */
+  animation-fill-mode: none; /* Annuler l'animation */
+  letter-spacing: 0.0375em;
+  text-shadow: 0.25px -0.25px 0 #9388BD, -0.25px 0.5px 0.25px #9388BD, -0.5px 1px 0.25px #9388BD, -0.75px 1.5px 0.25px #9388BD, -1px 2px 0.25px #9388BD, -1.25px 2.5px 0.25px #9388BD, -1.5px 3px 0.25px #9388BD, -1.75px 3.5px 0.25px #9388BD, -2px 4px 0.25px #9388BD, -2.25px 4.5px 0.25px #9388BD, -2.5px 5px 0.25px #9388BD, -2.75px 5.5px 0.25px #9388BD, -3px 6px 0.25px #9388BD, -3.25px 6.5px 0.25px #9388BD, -3.5px 7px 0.25px #9388BD, -3.75px 7.5px 0.25px #9388BD, -4px 8px 0.25px #9388BD, -4.25px 8.5px 0.25px #9388BD, -4.5px 9px 0.25px #9388BD, -4.75px 9.5px 0.25px #9388BD, -5px 10px 0.25px #9388BD, -5.25px 10.5px 0.25px #9388BD, -5.5px 11px 0.25px #9388BD, -5.75px 11.5px 0.25px #9388BD, -6px 12px 0.25px #9388BD, -6.25px 12.5px 0.25px #9388BD, -6.5px 13px 0.25px #9388BD, -6.75px 13.5px 0.25px #9388BD, -7px 14px 0.25px #9388BD;
+}
+.create-employee.no-delay {
+  animation-delay: 0s; /* supprime le délai de l'animation */
+}
+
+
+
+
+.employee-list-container .container-employees a{
+  color: #9388BD;
+}
+.employee-list-container .container-employees a:hover {
+  color: white;
+  background-color: #9388BD;
+}
+.employee-list-container .container-employees  a{
+  border: 2px solid #9388BD;
+}
 
 /* *********************************  Tableau  ********************************* */
 
