@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Table from "./Table";
+import wave from "../wave.png";
 
 const EmployeeList = () => {
   return (
@@ -24,7 +25,19 @@ const EmployeeList = () => {
         <Table />
       </div>
 
-      <footer className="footer"></footer>
+      <footer
+        className="footer"
+        style={{
+          left: 0,
+          bottom: -3,
+          height: "208px",
+          backgroundImage: `url(${wave})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          width: "100%",
+          }} >
+        </footer>
     </div>
   );
 };

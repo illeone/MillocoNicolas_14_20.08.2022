@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./Search";
 import DropDown from "./DropDown";
+import Checkbox from "./Checkbox";
 
 const getInitialRows = () => {
   const storedData = localStorage.getItem("employees");
@@ -123,6 +124,15 @@ const Table = () => {
     (currentPage + 1) * pageSize
   );
 
+    // Gère la hauteur dynamique du tableau en fonction du nombre de lignes affichées
+    const [tableHeight, setTableHeight] = useState(0);
+
+    useEffect(() => {
+      const rowHeight = 40; // Hauteur d'une ligne
+      const headerHeight = 40; // Hauteur de l'en-tête du tableau
+      setTableHeight(headerHeight + rowHeight * displayedRows.length); // Calcule et met à jour la hauteur du tableau
+    }, [displayedRows]);
+
   return (
     <div className="wrapper">
       <div className="employee-table">
@@ -150,13 +160,13 @@ const Table = () => {
             </div>
           <SearchBar onSearch={handleSearch} />
         </div>
-        <div className="table-container">
+        <div className="table-container" style={{ height: tableHeight }}>
           <table>
             <thead>
               <tr>
                 <th className="col-select" onClick={handleSelectAll}>
-                  <input
-                    type="checkbox"
+                  <Checkbox
+                    id="select-all"
                     checked={selectAll}
                     onChange={handleSelectAll}
                   />
@@ -180,11 +190,10 @@ const Table = () => {
                 className={`employee-table-row${
                   selectedRows.has(row.id) ? " selected" : ""
                   }`}           
-                >
-              
+                >             
                   <td>
-                    <input
-                      type="checkbox"
+                    <Checkbox
+                      id={`row-${row.id}`}
                       checked={selectedRows.has(row.id)}
                       onChange={() => handleSelect(row.id)}
                     />
