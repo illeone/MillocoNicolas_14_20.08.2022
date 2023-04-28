@@ -173,8 +173,15 @@ const Table = () => {
               </tr>
             </thead>
             <tbody>
-              {displayedRows.map((row) => (
-                <tr className="employee-table-row">
+              {displayedRows.map((row, index) => (
+                <tr
+                key={index}
+                style={{ animationDelay: `${index * 0.05}s` }}
+                className={`employee-table-row${
+                  selectedRows.has(row.id) ? " selected" : ""
+                  }`}           
+                >
+              
                   <td>
                     <input
                       type="checkbox"
