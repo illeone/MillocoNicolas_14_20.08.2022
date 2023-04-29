@@ -1033,3 +1033,44 @@ th {
   border-radius: 15px;
   transform: rotate(-20deg);
 }  
+
+
+/* *********************************  Input Error  ********************************* */
+
+/* message d'erreur rouge et border rouge et vert des inputs */
+.error-input.error {
+  border: 2px solid red !important;
+  background: rgba(255, 0, 0, 0.119)!important;
+  z-index: 100;
+}
+/* .success {
+  border: 2px solid green !important;
+} */
+.error-input.error #select-department , .error-input.error #select-state  {
+  background: transparent;
+}
+
+.error-input .my-calendar{
+  background: transparent;
+}
+.input-error input {
+  background-color: rgba(255, 0, 0, 0.119);
+  border: 2px solid red !important;
+}
+
+.success:not(#select-department):not(#select-state) {
+  border: 2px solid green !important;
+  height: 43px;
+  border-radius: 5px;
+}
+
+.error-text-date {
+  color: red;
+  font-size: 0.6rem;
+  margin-left: 5px;
+  border-radius: 5px;
+  width: 100%;
+  padding-bottom: 1.6rem;
+  display: block;
+  margin-top: -36px;
+}
