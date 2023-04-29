@@ -568,7 +568,6 @@ h2.create-employee-shadow {
 
 .employee-table {
   margin-top: 2rem;
-  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -579,7 +578,6 @@ h2.create-employee-shadow {
 }
 
 table {
-  margin-bottom: 1rem;
   width: 100%; 
   border-collapse: collapse;
 }
@@ -593,6 +591,7 @@ th {
   color: #9388BD;
   border-bottom: 2px solid #FDD7D5;
   cursor: pointer;
+  padding-bottom: 1.5rem;
 }
 
 .employee-table-row:hover {
@@ -668,11 +667,11 @@ th {
 
 /* *********************************  Search  ********************************* */
 
-@media screen and (min-width: 968px) {
+/* @media screen and (min-width: 968px) {
   body {
     font-size: .875rem;
   }
-}
+} */
 
 .bloc-search{
   box-sizing: border-box;
@@ -978,4 +977,59 @@ th {
   }
 }
 
+/* *********************************  Glassmorphism Tableau  ********************************* */
 
+.spacer {
+  margin-top: 5rem;
+  /* margin-bottom: 6rem; */
+  position: relative;
+}
+.footer{
+  margin-top: 5rem;
+}
+
+.shapes-container {
+  position: absolute;
+  z-index: -1;
+}
+
+.square,
+.random-shape {
+  position: absolute;
+  opacity: 0.8;
+  /* animation: rotate 100s linear infinite; 
+  will-change: transform, opacity; */
+}
+
+.circle {
+  position: absolute;
+  opacity: 0.8;
+  width: 180px;
+  height: 158px;
+  background-color: #9388bdbe;
+  border-radius: 50%;
+  top: 350px;
+  left: calc(50vw + 450px);
+  /* animation: move 15s ease-in-out infinite; 
+  will-change: transform; */
+}
+
+.square {
+  width: 150px;
+  height: 150px;
+  background-color: #FDD7D5;
+  top: 240px;
+  left: calc(50vw - 650px);
+  border-radius: 10px;
+  transform: rotate(20deg);
+}
+
+.random-shape {
+  width: 120px;
+  height: 120px;
+  background-color: #cba6d3be;
+  top: 0px;
+  left: calc(50vw + 0px);
+  border-radius: 15px;
+  transform: rotate(-20deg);
+}  

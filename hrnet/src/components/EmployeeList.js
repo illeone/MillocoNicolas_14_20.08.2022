@@ -21,23 +21,26 @@ const EmployeeList = () => {
             </div>
         </NavLink>
       </div>
-      <div>
+      <div className="spacer">
+        <div className="shapes-container">
+          <div className="circle"></div>
+          <div className="square"></div>
+          <div className="random-shape"></div>
+        </div>
         <Table />
       </div>
 
       <footer
-        className="footer"
-        style={{
-          left: 0,
-          bottom: -3,
-          height: "208px",
-          backgroundImage: `url(${wave})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          width: "100%",
+          className="footer"
+          style={{
+            height: "44vh",
+            backgroundImage: `url(${wave})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center calc(100% + 100px)",
+            width: "100%",
           }} >
-        </footer>
+      </footer>
     </div>
   );
 };
