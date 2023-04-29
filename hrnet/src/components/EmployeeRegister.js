@@ -69,18 +69,26 @@ const EmployeeRegister = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsSubmitted(true);
-      
-        const employees = JSON.parse(localStorage.getItem("employees")) || [];
-      
+        console.log(employee); 
+        // Vérifier que toutes les propriétés sont remplies
         if (!employee.firstName || !employee.lastName || !employee.dateOfBirth || !employee.startDate || !employee.street || !employee.city || !employee.state || !employee.zipCode || !employee.department ) {
+          
           alert("Veuillez remplir tous les champs obligatoires.");
         } else {
-          localStorage.setItem("employees", JSON.stringify([...employees, employee]));
+          const employees = JSON.parse(localStorage.getItem("employees")) || [];
+      
+          // Utiliser toISOString pour convertir les dates avant de les enregistrer
+          const updatedEmployee = {
+            ...employee,
+            dateOfBirth: employee.dateOfBirth ? employee.dateOfBirth.toISOString().substring(0, 10) : "",
+            startDate: employee.startDate ? employee.startDate.toISOString().substring(0, 10) : "",
+          };
+      
+          localStorage.setItem("employees", JSON.stringify([...employees, updatedEmployee]));
           setIsOpen(true);
-        }
-      }
-    
-    
+        }           
+      };
+       
     const handleModalOk = () => {
     setEmployee({
         firstName: "",
