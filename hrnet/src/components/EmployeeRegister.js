@@ -4,11 +4,11 @@ import { NavLink } from "react-router-dom";
 import { states, departments } from "../data/data";
 import Modal from "./Modal";
 import DropDown from "./DropDown";
-import Dates from "./Calendar";
 import Button from "./Button";
+import DateInput from "./DateInput";
+import TextInput from "./TextInput";
 
 const EmployeeRegister = () => {
-  
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [employee, setEmployee] = useState({
@@ -108,107 +108,106 @@ const EmployeeRegister = () => {
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className="inputbox first">
-            <label htmlFor="first-name">First Name</label>
-            <input
-              type="text"
+            <TextInput
               id="first-name"
               name="firstName"
-              onChange={handleChange}
               value={employee.firstName}
-              className={`inputbox first ${isSubmitted && !employee.firstName ? "error-input error" : ""} ${employee.firstName && isSubmitted ? "success" : ""}`}
+              handleChange={handleChange}
+              labelText="First Name"
+              labelClassName="first-name-label"
+              inputClassName="first"
+              error={!employee.firstName}
+              isSubmitted={isSubmitted}
             />
-            {isSubmitted && !employee.firstName && (
-                <span className="error-text" style={{color: "red", fontSize: "0.6rem", marginLeft: "3rem", marginTop:"-10px", marginTop: "-2.2rem",paddingBottom:"1.5rem", display: "block"  }}>* This field is required</span>
-              )}
           </div>
           <div className="inputbox last">
-            <label htmlFor="last-name">Last Name</label>
-            <input
-              type="text"
+            <TextInput
               id="last-name"
               name="lastName"
-              onChange={handleChange}
               value={employee.lastName}
-              className={`inputbox first ${isSubmitted && !employee.lastName ? "error-input error" : ""} ${employee.lastName && isSubmitted ? "success" : ""}`}
+              handleChange={handleChange}
+              labelText="Last Name"
+              labelClassName="last-name-label"
+              inputClassName="first"
+              error={!employee.lastName}
+              isSubmitted={isSubmitted}
             />
-            {isSubmitted && !employee.lastName && (
-                    <span className="error-text" style={{color: "red", fontSize: "0.6rem", marginLeft: "3rem", marginTop:"-10px", marginTop: "-2.2rem",paddingBottom:"1.5rem", display: "block"  }}>* This field is required</span>
-                )}
           </div>
           <div className="dates">
-            <div>
-              <label htmlFor="date-of-birth">Date of Birth</label>
-              <Dates
-                id="date-of-birth"
-                value={employee.dateOfBirth}
-                onChange={handleChange}
-                isSubmitted={isSubmitted}
-              />
-            </div>
-            <div>
-              <label htmlFor="start-date">Start Date</label>
-              <Dates
-                id="start-date"
-                name="startDate"
-                value={employee.startDate}
-                onChange={handleChange}
-                isSubmitted={isSubmitted}
-              />
-            </div>
+            <DateInput
+              id="date-of-birth"
+              name="dateOfBirth"
+              value={employee.dateOfBirth}
+              handleChange={handleChange}
+              labelText="Date of Birth"
+              labelClassName="date-of-birth-label"
+              inputClassName="date-of-birth"
+              error={!employee.dateOfBirth}
+              isSubmitted={isSubmitted}
+            />
+
+            <DateInput
+              id="start-date"
+              name="startDate"
+              value={employee.startDate}
+              handleChange={handleChange}
+              labelText="Start Date"
+              labelClassName="start-date-label"
+              inputClassName="start-date"
+              error={!employee.startDate}
+              isSubmitted={isSubmitted}
+            />
           </div>
 
           <fieldset className="address">
             <legend>Address</legend>
+            <TextInput
+              id="street"
+              name="street"
+              value={employee.street}
+              handleChange={handleChange}
+              labelText="Street"
+              labelClassName="street-label"
+              inputClassName="street"
+              error={!employee.street}
+              isSubmitted={isSubmitted}
+            />
             <div>
-              <label htmlFor="street">Street</label>
-              <input
-                type="text"
-                id="street"
-                name="street"
-                onChange={handleChange}
-                value={employee.street}
-                className={`inputbox street ${isSubmitted && !employee.street ? "error-input error" : ""} ${employee.street && isSubmitted ? "success" : ""}`}
-              />
-              {isSubmitted && !employee.street && (
-                            <span className="error-text" style={{color: "red", fontSize: "0.6rem", marginLeft: "5px", marginTop:"-10px", marginTop: "-2.2rem",paddingBottom:"1.5rem", display: "block"  }}>* This field is required</span>
-                        )}
-            </div>
-            <div>
-              <label htmlFor="city">City</label>
-              <input
-                type="text"
+              <TextInput
                 id="city"
                 name="city"
-                onChange={handleChange}
                 value={employee.city}
-                className={`inputbox city ${isSubmitted && !employee.city ? "error-input error" : ""} ${employee.city && isSubmitted ? "success" : ""}`}
+                handleChange={handleChange}
+                labelText="City"
+                labelClassName="city-label"
+                inputClassName="city"
+                error={!employee.city}
+                isSubmitted={isSubmitted}
               />
-              {isSubmitted && !employee.city && (
-                            <span className="error-text" style={{color: "red", fontSize: "0.6rem", marginLeft: "5px", marginTop:"-10px", marginTop: "-2.2rem",paddingBottom:"1.5rem", display: "block"  }}>* This field is required</span>
-                        )}
             </div>
             <div>
               <p className="state-label">State</p>
               <DropDown
                 name="state"
                 onChange={handleChange}
-                value={employee.state}
                 options={states}
+                value={employee.state}
                 isSubmitted={isSubmitted}
               />
             </div>
             <div>
-              <label htmlFor="zip-code">Zip Code</label>
-              <input
-                type="number"
+              <TextInput
+                id="zip-code"
                 name="zipCode"
-                onChange={handleChange}
                 value={employee.zipCode}
-                className={`inputbox zipCode ${isSubmitted && !employee.zipCode ? "error-input error" : ""} ${employee.zipCode && isSubmitted ? "success" : ""}`}
+                handleChange={handleChange}
+                labelText="Zip Code"
+                labelClassName="zip-code-label"
+                inputClassName="zipCode"
+                error={!employee.zipCode}
+                isSubmitted={isSubmitted}
+                type="number" // type 'number' pour le champ 'Zip Code'
               />
-              {isSubmitted && !employee.zipCode && (
-                            <span className="error-text" style={{color: "red", fontSize: "0.6rem", marginLeft: "8px", marginTop:"-10px", marginTop: "-2.2rem",paddingBottom:"1.5rem", display: "block"  }}>* This field is required</span>
-                        )}
             </div>
             <div>
               <p className="department-label">Department</p>
