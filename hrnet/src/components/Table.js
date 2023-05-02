@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import SearchBar from "./Search";
-// import DropDown from "./DropDown";
 import Checkbox from "./Checkbox";
 import TableRow from "./TableRow";
-import Pagination from "./Pagination";
 import TopTableControls from "./TopTableControls";
+import BottomTableControls from "./BottomTableControls";
 
 const getInitialRows = () => {
   const storedData = localStorage.getItem("employees");
@@ -181,30 +179,13 @@ const Table = () => {
           </table>
 
         </div>
-        <div className="employee-table-controls">
-          <div className="employee-table-bottom-left">
-            <button
-              className="employee-table-button-delete"
-              onClick={handleDelete}
-              style={{
-                display: selectedRows.size > 0 ? "inline-block" : "none",
-              }}
-            >
-              <span className="employee-table-button-delete-content">
-                <i className="fas fa-trash-alt icon"></i>
-                <span>Delete</span>
-              </span>
-            </button>
-          </div>
-          <div className="employee-table-bottom-right">
-            <Pagination
-              currentPage={currentPage}
-              pageCount={pageCount}
-              onPageChange={setCurrentPage}
-            />
-          </div>
-
-        </div>
+          <BottomTableControls
+          currentPage={currentPage}
+          pageCount={pageCount}
+          onPageChange={setCurrentPage}
+          onDelete={handleDelete}
+          showDelete={selectedRows.size > 0}
+        />
       </div>
     </div>
   );
