@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchBar from "./Search";
 import DropDown from "./DropDown";
 import Checkbox from "./Checkbox";
+import TableRow from "./TableRow";
 
 const getInitialRows = () => {
   const storedData = localStorage.getItem("employees");
@@ -167,6 +168,7 @@ const Table = () => {
                 <th className="col-select" onClick={handleSelectAll}>
                   <Checkbox
                     id="select-all"
+
                     checked={selectAll}
                     onChange={handleSelectAll}
                   />
@@ -184,33 +186,17 @@ const Table = () => {
             </thead>
             <tbody>
               {displayedRows.map((row, index) => (
-                <tr
-                key={index}
-                style={{ animationDelay: `${index * 0.05}s` }}
-                className={`employee-table-row${
-                  selectedRows.has(row.id) ? " selected" : ""
-                  }`}           
-                >             
-                  <td>
-                    <Checkbox
-                      id={`row-${row.id}`}
-                      checked={selectedRows.has(row.id)}
-                      onChange={() => handleSelect(row.id)}
-                    />
-                  </td>
-                  <td>{row.firstName}</td>
-                  <td>{row.lastName}</td>
-                  <td>{row.startDate}</td>
-                  <td>{row.department}</td>
-                  <td>{row.dateOfBirth}</td>
-                  <td>{row.street}</td>
-                  <td>{row.city}</td>
-                  <td>{row.state}</td>
-                  <td>{row.zipCode}</td>
-                </tr>
+                <TableRow
+                  key={row.id}
+                  row={row}
+                  index={index}
+                  isSelected={selectedRows.has(row.id)}
+                  onRowSelect={handleSelect}
+                />
               ))}
             </tbody>
           </table>
+
         </div>
         <div className="employee-table-controls">
           <div className="employee-table-bottom-left">
