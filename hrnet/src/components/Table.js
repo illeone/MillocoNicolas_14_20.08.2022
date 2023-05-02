@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import SearchBar from "./Search";
-import DropDown from "./DropDown";
+// import SearchBar from "./Search";
+// import DropDown from "./DropDown";
 import Checkbox from "./Checkbox";
 import TableRow from "./TableRow";
 import Pagination from "./Pagination";
+import TopTableControls from "./TopTableControls";
 
 const getInitialRows = () => {
   const storedData = localStorage.getItem("employees");
@@ -138,30 +139,11 @@ const Table = () => {
   return (
     <div className="wrapper">
       <div className="employee-table">
-        <div className="employee-table-controls">
-          <div className="employee-table-top-left">
-            <label htmlFor="pageSize" className="search-entries">
-              Show entries:{" "}
-            </label>
-            <div className="custom-select-wrapper">
-                <DropDown
-                  options={[
-                    { value: 5, label: "5" },
-                    { value: 10, label: "10" },
-                    { value: 20, label: "20" },
-                  ]}
-                  onChange={(event) => {
-                    setPageSize(Number(event.target.value));
-                    setCurrentPage(0);
-                  }}
-                  value={pageSize}
-                  name="pageSize"
-                  submit={false}
-                />
-              </div>
-            </div>
-          <SearchBar onSearch={handleSearch} />
-        </div>
+        <TopTableControls
+          pageSize={pageSize}
+          onPageSizeChange={setPageSize}
+          onSearch={handleSearch}
+        />
         <div className="table-container" style={{ height: tableHeight }}>
           <table>
             <thead>
