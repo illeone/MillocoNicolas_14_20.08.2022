@@ -3,6 +3,7 @@ import SearchBar from "./Search";
 import DropDown from "./DropDown";
 import Checkbox from "./Checkbox";
 import TableRow from "./TableRow";
+import Pagination from "./Pagination";
 
 const getInitialRows = () => {
   const storedData = localStorage.getItem("employees");
@@ -214,34 +215,13 @@ const Table = () => {
             </button>
           </div>
           <div className="employee-table-bottom-right">
-            <div className="pagination">
-              <button
-                className="pagination-button"
-                onClick={() => setCurrentPage(currentPage - 1)}
-                disabled={currentPage === 0}
-              >
-                &laquo;
-              </button>
-              {Array.from({ length: pageCount }, (_, index) => (
-                <button
-                  key={index}
-                  className={`pagination-button${
-                    currentPage === index ? " active" : ""
-                  }`}
-                  onClick={() => setCurrentPage(index)}
-                >
-                  {index + 1}
-                </button>
-              ))}
-              <button
-                className="pagination-button"
-                onClick={() => setCurrentPage(currentPage + 1)}
-                disabled={currentPage === pageCount - 1}
-              >
-                &raquo;
-              </button>
-            </div>
+            <Pagination
+              currentPage={currentPage}
+              pageCount={pageCount}
+              onPageChange={setCurrentPage}
+            />
           </div>
+
         </div>
       </div>
     </div>
