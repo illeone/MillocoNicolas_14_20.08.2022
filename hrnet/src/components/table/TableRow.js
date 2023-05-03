@@ -1,5 +1,5 @@
 import React from "react";
-import Checkbox from "./Checkbox";
+import Checkbox from "../buttons/Checkbox";
 
 const TableRow = ({ row, index,  isSelected, onRowSelect }) => {
   return (

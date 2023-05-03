@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Table from "./Table";
-import wave from "../wave.png";
+import Table from "../components/table/Table";
+import wave from "../images/wave.png";
 
 const EmployeeList = () => {
   return (

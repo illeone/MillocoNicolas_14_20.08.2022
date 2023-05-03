@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Checkbox from "./Checkbox";
+import Checkbox from "../buttons/Checkbox";
 import TableRow from "./TableRow";
 import TopTableControls from "./TopTableControls";
 import BottomTableControls from "./BottomTableControls";
 
-const getInitialRows = () => {
+const getEmployeeData = () => {
   const storedData = localStorage.getItem("employees");
   if (storedData) {
     return JSON.parse(storedData);
@@ -12,7 +12,7 @@ const getInitialRows = () => {
   return [];
 };
 
-const addUniqueId = (rows) => {
+const addIdToEmployeeRows = (rows) => {
   return rows.map((row, index) => ({ ...row, id: index }));
 };
 
@@ -26,8 +26,8 @@ const Table = () => {
   const [selectedRows, setSelectedRows] = useState(new Set());
 
   useEffect(() => {
-    const initialRows = getInitialRows();
-    const rowsWithId = addUniqueId(initialRows); // Ajoute un identifiant unique à chaque ligne
+    const initialRows = getEmployeeData();
+    const rowsWithId = addIdToEmployeeRows(initialRows); // Ajoute un identifiant unique à chaque ligne
     setRows(rowsWithId);
   }, []);
 
@@ -45,11 +45,10 @@ const Table = () => {
   };
 
   const handleDelete = () => {
-    const newSelectedRows = new Set(selectedRows);
-    const newRows = rows.filter((row) => !newSelectedRows.has(row.id));
-    setRows(newRows);
+    const remainingRows = rows.filter((row) => !selectedRows.has(row.id));
+    setRows(remainingRows);
     setSelectedRows(new Set());
-    updateLocalStorage(newRows);
+    updateLocalStorage(remainingRows);
   };
 
   const handleSearch = (newSearchText) => {
@@ -96,43 +95,50 @@ const Table = () => {
     </th>
   );
 
-  const sortedRows = rows
-    .sort((a, b) => {
-      if (sortField === "") {
+  // Fonction de tri
+  const sortRows = (rows, field, ascending) => {
+    return [...rows].sort((a, b) => {
+      if (field === "") {
         return 0;
       }
-      const valueA = a[sortField];
-      const valueB = b[sortField];
+      const valueA = a[field];
+      const valueB = b[field];
       if (valueA < valueB) {
-        return sortAscending ? -1 : 1;
+        return ascending ? -1 : 1;
       }
       if (valueA > valueB) {
-        return sortAscending ? 1 : -1;
+        return ascending ? 1 : -1;
       }
       return 0;
-    })
-    .filter((row) => {
+    });
+  };
+
+  // Fonction de filtrage
+  const filterRows = (rows, searchText) => {
+    return rows.filter((row) => {
       return (
         row.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
         row.lastName.toLowerCase().includes(searchText.toLowerCase())
       );
     });
+  };
 
-  const pageCount = Math.ceil(sortedRows.length / pageSize);
-
-  const displayedRows = sortedRows.slice(
+  const sortedRows = sortRows(rows, sortField, sortAscending);
+  const filteredRows = filterRows(sortedRows, searchText);
+  const displayedRows = filteredRows.slice(
     currentPage * pageSize,
     (currentPage + 1) * pageSize
   );
+  const pageCount = Math.ceil(filteredRows.length / pageSize);
 
-    // Gère la hauteur dynamique du tableau en fonction du nombre de lignes affichées
-    const [tableHeight, setTableHeight] = useState(0);
+  // Gère la hauteur dynamique du tableau en fonction du nombre de lignes affichées
+  const [tableHeight, setTableHeight] = useState(0);
 
-    useEffect(() => {
-      const rowHeight = 40; // Hauteur d'une ligne
-      const headerHeight = 40; // Hauteur de l'en-tête du tableau
-      setTableHeight(headerHeight + rowHeight * displayedRows.length); // Calcule et met à jour la hauteur du tableau
-    }, [displayedRows]);
+  useEffect(() => {
+    const rowHeight = 40; // Hauteur d'une ligne
+    const headerHeight = 40; // Hauteur de l'en-tête du tableau
+    setTableHeight(headerHeight + rowHeight * displayedRows.length); // Calcule et met à jour la hauteur du tableau
+  }, [displayedRows]);
 
   return (
     <div className="wrapper">
@@ -149,7 +155,6 @@ const Table = () => {
                 <th className="col-select" onClick={handleSelectAll}>
                   <Checkbox
                     id="select-all"
-
                     checked={selectAll}
                     onChange={handleSelectAll}
                   />
@@ -177,9 +182,8 @@ const Table = () => {
               ))}
             </tbody>
           </table>
-
         </div>
-          <BottomTableControls
+        <BottomTableControls
           currentPage={currentPage}
           pageCount={pageCount}
           onPageChange={setCurrentPage}

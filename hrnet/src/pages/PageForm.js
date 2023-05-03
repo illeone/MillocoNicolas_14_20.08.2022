@@ -1,6 +1,6 @@
 import React from 'react';
-import EmployeeRegister from './EmployeeRegister';
-import ScrollLabel from './ScrollLabel';
+import EmployeeRegister from '../components/form/EmployeeRegister';
+import ScrollLabel from '../components/form/ScrollLabel';
 
 const PageRegister = () => {
   return (

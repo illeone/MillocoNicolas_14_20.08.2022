@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { states, departments } from "../data/data";
-import Modal from "./Modal";
-import DropDown from "./DropDown";
-import Button from "./Button";
-import DateInput from "./DateInput";
-import TextInput from "./TextInput";
+import { states, departments } from "../../data/data";
+import Modal from "../modal/Modal";
+import DropDown from "../buttons/DropDown";
+import Button from "../buttons/ValidButton";
+import DateInput from "../inputs/DateInput";
+import TextInput from "../inputs/TextInput";
 
 const EmployeeRegister = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -193,6 +193,8 @@ const EmployeeRegister = () => {
                 options={states}
                 value={employee.state}
                 isSubmitted={isSubmitted}
+                labelText="State"
+                labelClassName="state-label"
               />
             </div>
             <div>

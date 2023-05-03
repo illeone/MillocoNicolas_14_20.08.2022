@@ -1,6 +1,8 @@
 import React from "react"
-import Button from "./Button";
-import tickImage from "../tick.png";
+import Button from "../buttons/ValidButton";
+import tickImage from "../../images/tick.png";
+import './modal.css';
+
 
 function Modal({ isOpen, btnOk, btnOkAction, title, description }) {
 

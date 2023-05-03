@@ -2,7 +2,7 @@ body .register{
   font-family: 'Varela Round', sans-serif;
   min-height: 100vh;
   width: 100%;
-  background: url('montagnes.jpg')no-repeat;
+  background: url('./images/montagnes.jpg')no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -278,47 +278,6 @@ label[for="department"] {
 
 /* *********************************  Modal  ********************************* */
 
-.popup{
-  width: 320px;
-  height: 300px;
-  background: #fff;
-  border-radius: 150px;
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%,-50%) scale(0.1);
-  text-align: center;
-  padding: 0 30px 30px;
-  color: #333;
-  visibility: hidden;
-  transition: transform 0.4s, top 0.4s;
-  z-index: 2;
-  box-shadow: 0px 0px 90px 160px #6c6c6c;
-}
-
-.open-popup{
-  visibility: visible;
-  top: 60%;
-  transform: translate(-50%,-50%) scale(1);
-}
-.popup img{
-  width: 100px;
-  margin-top: -50px;
-  border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-.popup h2{
-  font-size: 38px;
-  font-weight: 500;
-  margin: 30px 0 10px;
-}
-.popup button{
-  display: block;
-  margin: 0 auto; 
-  margin-top: 20px;
-}
-
-
 /* *********************************  Button Save  ********************************* */
 
 .btn-save{
@@ -425,6 +384,46 @@ label[for="department"] {
   }
 }
 
+/* *********************************  Input Error  ********************************* */
+
+/* message d'erreur rouge et border rouge et vert des inputs */
+.error-input.error {
+  border: 2px solid red !important;
+  background: rgba(255, 0, 0, 0.119)!important;
+  z-index: 100;
+}
+/* .success {
+  border: 2px solid green !important;
+} */
+.error-input.error #select-department , .error-input.error #select-state  {
+  background: transparent;
+}
+
+.error-input .my-calendar{
+  background: transparent;
+}
+.input-error input {
+  background-color: rgba(255, 0, 0, 0.119);
+  border: 2px solid red !important;
+}
+
+.success:not(#select-department):not(#select-state) {
+  border: 2px solid green !important;
+  height: 43px;
+  border-radius: 5px;
+}
+
+.error-text-date {
+  color: red;
+  font-size: 0.6rem;
+  margin-left: 5px;
+  border-radius: 5px;
+  width: 100%;
+  padding-bottom: 1.6rem;
+  display: block;
+  margin-top: -36px;
+}
+
 /* ***************************************************  Page  EmployeeList  ***************************************************  */
 
 /* *********************************  Header EmployeeList  ********************************* */
@@ -479,7 +478,7 @@ label[for="department"] {
   /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); */
   box-shadow: -3px 3px 7px hsla(222, 67%, 12%, 0.257);
 
-  background-image: url("./logo2.svg");
+  background-image: url("./images/logo-wealth.svg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 80%;
@@ -1034,54 +1033,12 @@ th {
   transform: rotate(-20deg);
 }  
 
-
-/* *********************************  Input Error  ********************************* */
-
-/* message d'erreur rouge et border rouge et vert des inputs */
-.error-input.error {
-  border: 2px solid red !important;
-  background: rgba(255, 0, 0, 0.119)!important;
-  z-index: 100;
-}
-/* .success {
-  border: 2px solid green !important;
-} */
-.error-input.error #select-department , .error-input.error #select-state  {
-  background: transparent;
-}
-
-.error-input .my-calendar{
-  background: transparent;
-}
-.input-error input {
-  background-color: rgba(255, 0, 0, 0.119);
-  border: 2px solid red !important;
-}
-
-.success:not(#select-department):not(#select-state) {
-  border: 2px solid green !important;
-  height: 43px;
-  border-radius: 5px;
-}
-
-.error-text-date {
-  color: red;
-  font-size: 0.6rem;
-  margin-left: 5px;
-  border-radius: 5px;
-  width: 100%;
-  padding-bottom: 1.6rem;
-  display: block;
-  margin-top: -36px;
-}
-
-
 /* *********************************  Page Error 404  ********************************* */
 
 .page-404 {
   min-height: 100vh;
   width: 100%;
-  background: url('img404.jpg')no-repeat;
+  background-image: url('./images/img404.jpg');
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -1121,7 +1078,7 @@ th {
 
 .heading__top {
   display: block;
-  background-image: url('img404.jpg');
+  background-image: url('./images/img404.jpg');
   background-size: 100vw 100vh;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

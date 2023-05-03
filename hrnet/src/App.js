@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
-import PageRegister from "./components/PageRegister";
-import EmployeeList from "./components/EmployeeList";
-import Error404 from "./components/Error404";
+import PageForm from "./pages/PageForm";
+import PageList from "./pages/PageList";
+import Error404 from "./pages/Error404";
 
 function App() {
   return (
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<PageRegister/>} />  
-          <Route path="/list" element={<EmployeeList/>} />
+          <Route path="/" element={<PageForm/>} />  
+          <Route path="/list" element={<PageList/>} />
           <Route path="*" element={<Error404/>} />
         </Routes>
       </Router>

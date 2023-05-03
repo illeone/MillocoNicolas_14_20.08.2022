@@ -1,6 +1,6 @@
 import React from "react";
-import DropDown from "./DropDown";
-import SearchBar from "./Search";
+import DropDown from "../buttons/DropDown";
+import SearchBar from "../buttons/Search";
 
 const TopTableControls = ({ pageSize, onPageSizeChange, onSearch }) => {
   return (

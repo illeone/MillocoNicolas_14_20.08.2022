@@ -1,5 +1,5 @@
 import React from "react";
-import CustomLabel from "./CustomLabel";
+import CustomLabel from "../form/CustomLabel";
 
 const TextInput = ({
   id,

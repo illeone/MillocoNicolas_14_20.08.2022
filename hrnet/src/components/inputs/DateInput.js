@@ -1,8 +1,10 @@
 import React from "react";
 import { Calendar } from "primereact/calendar";
+import CustomLabel from "../form/CustomLabel";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+
 
 const DateInput = ({
   id,
@@ -20,9 +22,9 @@ const DateInput = ({
 
   return (
     <div>
-      <label htmlFor={id} className={labelClassName}>
+      <CustomLabel htmlFor={id} className={labelClassName}>
         {labelText}
-      </label>
+      </CustomLabel>
       <div
         className={`inputbox ${inputClassName} ${
           isError ? "error-input input-error" : ""
