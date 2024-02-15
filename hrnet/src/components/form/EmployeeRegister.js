@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import { states, departments } from "../../data/data";
-import Modal from "../modal/Modal";
+// import Modal from "../modal/Modal";
+import {Modal} from "@il_leone/modal-react"
 import DropDown from "../buttons/DropDown";
 import Button from "../buttons/ValidButton";
 import DateInput from "../inputs/DateInput";
