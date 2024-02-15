@@ -9,6 +9,8 @@ import Button from "../buttons/ValidButton";
 import DateInput from "../inputs/DateInput";
 import TextInput from "../inputs/TextInput";
 
+import { useEmployees } from '../../EmployeeContext';
+
 const EmployeeRegister = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -36,11 +38,13 @@ const EmployeeRegister = () => {
     console.log(employee);
   };
 
+  const { addEmployee } = useEmployees();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
     console.log(employee);
-    // Vérifier que toutes les propriétés sont remplies
+    // Vérifie que toutes les propriétés sont remplies
     if (
       !employee.firstName ||
       !employee.lastName ||
@@ -52,12 +56,12 @@ const EmployeeRegister = () => {
       !employee.zipCode ||
       !employee.department
     ) {
-      alert("Veuillez remplir tous les champs obligatoires.");
+      // alert("Veuillez remplir tous les champs obligatoires.");
     } else {
       const employees = JSON.parse(localStorage.getItem("employees")) || [];
 
-      // Utiliser toISOString pour convertir les dates avant de les enregistrer
-      const updatedEmployee = {
+      //  toISOString pour convertir les dates avant de les enregistrer
+      const newEmployee = {
         ...employee,
         dateOfBirth: employee.dateOfBirth
           ? employee.dateOfBirth.toISOString().substring(0, 10)
@@ -67,11 +71,9 @@ const EmployeeRegister = () => {
           : "",
       };
 
-      localStorage.setItem(
-        "employees",
-        JSON.stringify([...employees, updatedEmployee])
-      );
-      setIsOpen(true);
+      //  ajoute l'employé à l'état global
+      addEmployee(newEmployee);
+      setIsOpen(true); // gère l'ouverture modal
     }
   };
 
