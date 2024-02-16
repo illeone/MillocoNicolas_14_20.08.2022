@@ -4,19 +4,16 @@ import TableRow from "./TableRow";
 import TopTableControls from "./TopTableControls";
 import BottomTableControls from "./BottomTableControls";
 
-const getEmployeeData = () => {
-  const storedData = localStorage.getItem("employees");
-  if (storedData) {
-    return JSON.parse(storedData);
-  }
-  return [];
-};
+import { useEmployees } from '../../EmployeeContext';
 
 const addIdToEmployeeRows = (rows) => {
   return rows.map((row, index) => ({ ...row, id: index }));
 };
 
 const Table = () => {
+
+  const { employees } = useEmployees(); 
+
   const [rows, setRows] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [sortField, setSortField] = useState("");
@@ -26,10 +23,9 @@ const Table = () => {
   const [selectedRows, setSelectedRows] = useState(new Set());
 
   useEffect(() => {
-    const initialRows = getEmployeeData();
-    const rowsWithId = addIdToEmployeeRows(initialRows); // Ajoute un identifiant unique à chaque ligne
+    const rowsWithId = addIdToEmployeeRows(employees);
     setRows(rowsWithId);
-  }, []);
+  }, [employees]); 
 
   useEffect(() => {
     setSelectedRows(new Set());
@@ -39,16 +35,11 @@ const Table = () => {
     setSelectAll(false);
   }, [currentPage]);
 
-  const updateLocalStorage = (newRows) => {
-    const rowsWithoutId = newRows.map(({ id, ...rest }) => rest);
-    localStorage.setItem("employees", JSON.stringify(rowsWithoutId));
-  };
 
   const handleDelete = () => {
     const remainingRows = rows.filter((row) => !selectedRows.has(row.id));
     setRows(remainingRows);
     setSelectedRows(new Set());
-    updateLocalStorage(remainingRows);
   };
 
   const handleSearch = (newSearchText) => {
@@ -137,7 +128,7 @@ const Table = () => {
   useEffect(() => {
     const rowHeight = 40; // Hauteur d'une ligne
     const headerHeight = 40; // Hauteur de l'en-tête du tableau
-    setTableHeight(headerHeight + rowHeight * displayedRows.length); // Calcule et met à jour la hauteur du tableau
+    setTableHeight(headerHeight + rowHeight * displayedRows.length); // met à jour la hauteur du tableau
   }, [displayedRows]);
 
   return (

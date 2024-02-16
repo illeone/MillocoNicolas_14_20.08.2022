@@ -58,7 +58,6 @@ const EmployeeRegister = () => {
     ) {
       // alert("Veuillez remplir tous les champs obligatoires.");
     } else {
-      const employees = JSON.parse(localStorage.getItem("employees")) || [];
 
       //  toISOString pour convertir les dates avant de les enregistrer
       const newEmployee = {
