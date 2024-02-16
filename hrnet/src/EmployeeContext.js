@@ -10,20 +10,25 @@ export const EmployeeProvider = ({ children }) => {
     return storedEmployees ? JSON.parse(storedEmployees) : [];
   });
 
-  let employeeIdCounter = 0;
-
   const addEmployee = (employee) => {
-    const newEmployee = { ...employee, id: ++employeeIdCounter };
-    setEmployees(prevEmployees => [...prevEmployees, newEmployee]);
-    localStorage.setItem('employees', JSON.stringify(newEmployee));
-  };  
+    employee.id = Date.now();
+    const updatedEmployees = [...employees, employee];
+    setEmployees(updatedEmployees);
+    localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+  };
+
+  const deleteEmployee = (employeeIds) => {
+    const updatedEmployees = employees.filter(emp => !employeeIds.includes(emp.id));
+    setEmployees(updatedEmployees);
+    localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+  };
 
   useEffect(() => {
     localStorage.setItem('employees', JSON.stringify(employees));
   }, [employees]);
 
   return (
-    <EmployeeContext.Provider value={{ employees,addEmployee }}>
+    <EmployeeContext.Provider value={{ employees, addEmployee, deleteEmployee }}>
       {children}
     </EmployeeContext.Provider>
   );

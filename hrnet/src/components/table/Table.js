@@ -6,13 +6,9 @@ import BottomTableControls from "./BottomTableControls";
 
 import { useEmployees } from '../../EmployeeContext';
 
-const addIdToEmployeeRows = (rows) => {
-  return rows.map((row, index) => ({ ...row, id: index }));
-};
-
 const Table = () => {
 
-  const { employees } = useEmployees(); 
+  const { employees, deleteEmployee } = useEmployees(); 
 
   const [rows, setRows] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -20,53 +16,47 @@ const Table = () => {
   const [sortAscending, setSortAscending] = useState(true);
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
-  const [selectedRows, setSelectedRows] = useState(new Set());
+  const [selectedRows, setSelectedRows] = useState([]);
 
   useEffect(() => {
-    const rowsWithId = addIdToEmployeeRows(employees);
-    setRows(rowsWithId);
-  }, [employees]); 
-
-  useEffect(() => {
-    setSelectedRows(new Set());
-  }, [currentPage]);
+    setRows(employees);
+  }, [employees]);
 
   useEffect(() => {
     setSelectAll(false);
   }, [currentPage]);
 
-
   const handleDelete = () => {
-    const remainingRows = rows.filter((row) => !selectedRows.has(row.id));
-    setRows(remainingRows);
-    setSelectedRows(new Set());
+    const idsToDelete = Array.from(selectedRows);
+    deleteEmployee(idsToDelete);
+    setSelectedRows([]); 
   };
-
+  
   const handleSearch = (newSearchText) => {
     setSearchText(newSearchText);
   };
 
   const handleSelect = (id) => {
-    const newSelectedRows = new Set(selectedRows);
-    if (newSelectedRows.has(id)) {
-      newSelectedRows.delete(id);
-    } else {
-      newSelectedRows.add(id);
-    }
-    setSelectedRows(newSelectedRows);
+    setSelectedRows(prevSelectedRows => {
+      if (prevSelectedRows.includes(id)) {
+        return prevSelectedRows.filter(rowId => rowId !== id);
+      } else {
+        return [...prevSelectedRows, id];
+      }
+    });
   };
-
+  
   const [selectAll, setSelectAll] = useState(false);
 
   const handleSelectAll = () => {
     if (selectAll) {
-      setSelectedRows(new Set());
-      setSelectAll(false);
+      setSelectedRows([]);
     } else {
-      setSelectedRows(new Set(displayedRows.map((row) => row.id)));
-      setSelectAll(true);
+      setSelectedRows(displayedRows.map(row => row.id));
     }
+    setSelectAll(!selectAll);
   };
+  
 
   const handleSort = (field) => {
     if (sortField === field) {
@@ -131,6 +121,11 @@ const Table = () => {
     setTableHeight(headerHeight + rowHeight * displayedRows.length); // met à jour la hauteur du tableau
   }, [displayedRows]);
 
+  useEffect(() => {
+    const allDisplayedRowsSelected = displayedRows.every(row => selectedRows.includes(row.id));
+    setSelectAll(displayedRows.length > 0 && allDisplayedRowsSelected);
+  }, [selectedRows, displayedRows]);  
+
   return (
     <div className="wrapper">
       <div className="employee-table">
@@ -167,7 +162,7 @@ const Table = () => {
                   key={row.id}
                   row={row}
                   index={index}
-                  isSelected={selectedRows.has(row.id)}
+                  isSelected={selectedRows.includes(row.id)}
                   onRowSelect={handleSelect}
                 />
               ))}
@@ -179,7 +174,7 @@ const Table = () => {
           pageCount={pageCount}
           onPageChange={setCurrentPage}
           onDelete={handleDelete}
-          showDelete={selectedRows.size > 0}
+          showDelete={selectedRows.length > 0}
         />
       </div>
     </div>
