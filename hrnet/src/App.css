@@ -616,7 +616,6 @@ th {
 }
 
 .table-container {
-  overflow: hidden;
   transition: height 0.5s ease;
   min-width: 1100px;
 }
@@ -768,9 +767,27 @@ th {
   opacity: 1;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width:576px) {
   .show-search {
     width: 250px;
+  }
+}
+
+@media (max-width: 576px) {
+  .show-search {
+    width: 160px;
+    height: 40px;
+  }
+  .search__input::placeholder {
+    font-size: 10px;
+  }
+  .search__input{
+    width: calc(100% - 32px);
+  }
+
+  .search__icon,
+  .search__close {
+  font-size: 1.3rem;
   }
 }
 
@@ -1107,4 +1124,225 @@ th {
   left: 56%;
   transform: translateX(-50%);
   z-index: 1;
+}
+
+
+
+/* ***************************************** Media queries ******************************************** */
+
+
+@media (max-width: 1230px) {
+  .circle{
+    display: none;
+  }
+}
+
+@media (max-width: 950px) {
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; 
+    padding: 0 20px;
+    font-size: small;
+  }
+
+  .title {
+    order: 1;
+    width: 22%;
+    text-align: left;
+  }
+  
+  .title h1 {
+    font-size: 2.1rem;
+    margin: 0;
+    max-width: 100px;
+  }
+
+  .container-employees {
+    order: 2; 
+    width: 100%; 
+    margin: 20px 0; 
+    padding: 0;
+    text-align: center
+  }
+
+  .create-employee {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    font-size:1.05rem;
+  }
+  .container-employees a {
+    width: 8em;
+    height: 8em;
+    padding: 1.5em;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: 30%; 
+  }
+
+
+  /* Ajustements du formulaire pour les petits écrans */
+  .form-container {
+    width: 80%; 
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  /* Correction de la barre blanche en bas */
+  body .register {
+    min-height: calc(100vh - 40px);
+    padding-bottom: 20px;
+  }
+
+  /* *********** */
+
+  .employee-list-container .block-container {
+
+    width: 80px;
+    height: 80px;
+    margin: 32px;
+  }
+
+  .creased-text {
+    font-size: 5px;
+  }
+
+  .hover-text{
+    font-size: 10px;
+  }
+  .block-container:hover .hover-text {
+    transition: 250ms;
+    transform: translateY(90px) translateX(8px);
+    color: #9388BD;
+  }
+    /* *********** */
+  
+  h2.create-employee-shadow { 
+    padding: 90px 12.5px 40px;
+    transform: translateX(-50%) translateY(-115%);
+    left: 50%;
+    width: 20rem;
+  }
+  .create-employee.no-delay {
+    animation-delay: 0s; /* supprime le délai de l'animation */
+  }
+
+
+  /* ******************** page list *********************/
+  
+
+  .wrapper {
+    max-width: 1200px;
+  }
+  
+  .employee-table {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  table {
+    width: 100%; 
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    font-size:12px;
+  }
+  th {
+    padding-bottom: 1.5rem;
+  }
+
+  /* ************** */
+
+  .employee-table-bottom-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .pagination {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .pagination-button {
+    font-size: 12px;
+  }
+
+   /* ************** */
+
+   .employee-table-button-delete {
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    margin-top: 0rem;
+  }
+
+  /* ************** */
+
+  #select-pageSize{
+    padding-right: 40px;
+    padding-top: 5px;
+  }
+  .search-entries{
+    margin-right: 1rem;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+}
+
+@media (max-width: 1100px) {
+  .table-container{
+  min-width: 0; 
+  width:100% ;
+  }
+}
+
+@media (max-width:750px){
+
+  .employee-table-button-delete {
+    margin-top: 7rem;
+  }
+ 
+  .pagination {
+    margin-top: 7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .employee-table-button-delete {
+    margin-top: -1rem;
+  }
+
+  .pagination {
+    margin-top: -1rem;
+  }
+
+    /* ************** */
+
+    h2.create-employee-shadow { 
+      width: 12rem;
+      font-size:18px;
+    }
+
+    .create-employee.no-delay {
+      animation-delay: 0s; /* supprime le délai de l'animation */
+    }
+
+    th,
+    td {
+      text-align: center;
+      padding: 7px;
+      font-size:10px;
+    }
 }
