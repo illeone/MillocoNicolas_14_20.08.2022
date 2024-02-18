@@ -103,7 +103,7 @@ const EmployeeRegister = () => {
         </div>
         <NavLink to={"/List"} style={{ textDecoration: "none" }}>
           <div className="container-employees">
-            <a href="employee-list.html">View Current Employees</a>
+            <p>View Current Employees</p>
           </div>
         </NavLink>
       </div>

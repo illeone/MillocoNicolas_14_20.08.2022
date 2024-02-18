@@ -63,7 +63,7 @@ body .employee-list-container{
   animation: fadeIn 2.5s ease-in-out forwards;
 }
 
-.container-employees a {
+.container-employees p {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,7 +74,6 @@ body .employee-list-container{
   text-align: center;
   font-weight: bolder;
   padding: 1.5em;
-  color: black;
   border: 2px solid #3f3f3f;
   border-radius: 50%;
   transition: 0.5s transform, 0.5s border-color;
@@ -90,7 +89,7 @@ body .employee-list-container{
   64%  { transform: scale(1,1)      translateY(0); }
   100% { transform: scale(1,1)      translateY(0); }
 }
-.container-employees a:hover {
+.container-employees p:hover {
   transform: scale(1.05) translateY(-0.25em);
   animation: bounce-6 1s ease-out forwards;
   color: #FDD7D5;
@@ -454,9 +453,7 @@ label[for="department"] {
 .employee-list-container .block-container .btn-back-1 {
   background: linear-gradient(135deg, #FDD7D5 -20%,#fea19c 120%);
 }
-/* .employee-list-container .block-container .btn-back-2 {
-  background: linear-gradient(135deg, #5c46eb -20%, #013fff 120%);
-} */
+
 .employee-list-container .block-container .btn-front {
   position: absolute;
   inset: 0;
@@ -486,9 +483,7 @@ label[for="department"] {
 .employee-list-container .block-container:hover > .btn-back {
   transform: translateZ(0px) rotateZ(0deg) rotateX(0deg) rotateY(0deg);
 }
-/* .employee-list-container .block-container:hover > .btn-front {
-  transform: translateZ(0px) translateY(0px) rotateX(0deg) rotateY(0deg);
-} */
+
 .creased-text {
   color: #9388BD;
   font-size: 8px;
@@ -542,15 +537,13 @@ h2.create-employee-shadow {
 
 
 
-.employee-list-container .container-employees a{
+.employee-list-container .container-employees p{
   color: #9388BD;
+  border: 2px solid #9388BD;
 }
-.employee-list-container .container-employees a:hover {
+.employee-list-container .container-employees p:hover{
   color: white;
   background-color: #9388BD;
-}
-.employee-list-container .container-employees  a{
-  border: 2px solid #9388BD;
 }
 
 /* *********************************  Tableau  ********************************* */
@@ -1176,7 +1169,7 @@ th {
     margin-top: 10px;
     font-size:1.05rem;
   }
-  .container-employees a {
+  .container-employees p {
     width: 8em;
     height: 8em;
     padding: 1.5em;

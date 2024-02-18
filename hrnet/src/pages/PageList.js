@@ -7,17 +7,17 @@ const EmployeeList = () => {
   return (
     <div className="employee-list-container">
       <div className="container">
-        <div class="block-container">
-          <div class="btn-back btn-back-1"></div>
-          <div class="btn-front creased-text">HRnet</div>
-          <div class="hover-text">Wealth Health</div>
+        <div className="block-container">
+          <div className="btn-back btn-back-1"></div>
+          <div className="btn-front creased-text">HRnet</div>
+          <div className="hover-text">Wealth Health</div>
         </div>
         <div className="create-employee no-delay ">
           <h2 className="create-employee-shadow">Current Employees</h2>
         </div>
         <NavLink to={"/"} style={{ textDecoration: "none" }}>
             <div className="container-employees">
-            <a href="employee-list.html">Create Employee</a>
+              <p>Create Employee</p>
             </div>
         </NavLink>
       </div>
