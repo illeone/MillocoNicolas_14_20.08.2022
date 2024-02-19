@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Checkbox from "../buttons/Checkbox";
 import TableRow from "./TableRow";
 import TopTableControls from "./TopTableControls";
 import BottomTableControls from "./BottomTableControls";
+import TableHeader from "./TableHeader";
 
 import { useEmployees } from '../../EmployeeContext';
 
@@ -136,26 +136,11 @@ const Table = () => {
         />
         <div className="table-container" style={{ height: tableHeight }}>
           <table>
-            <thead>
-              <tr>
-                <th className="col-select" onClick={handleSelectAll}>
-                  <Checkbox
-                    id="select-all"
-                    checked={selectAll}
-                    onChange={handleSelectAll}
-                  />
-                </th>
-                {renderTableHeader("First Name", "firstName")}
-                {renderTableHeader("Last Name", "lastName")}
-                {renderTableHeader("Start Date", "startDate")}
-                {renderTableHeader("Department", "department")}
-                {renderTableHeader("Date of Birth", "birthDate")}
-                {renderTableHeader("Street", "street")}
-                {renderTableHeader("City", "city")}
-                {renderTableHeader("State", "state")}
-                {renderTableHeader("Zip Code", "zipCode")}
-              </tr>
-            </thead>
+            <TableHeader
+              selectAll={selectAll} 
+              handleSelectAll={handleSelectAll} 
+              renderTableHeader={renderTableHeader} 
+            />
             <tbody>
               {displayedRows.map((row, index) => (
                 <TableRow
