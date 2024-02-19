@@ -6,9 +6,9 @@ const TopTableControls = ({ pageSize, onPageSizeChange, onSearch }) => {
   return (
     <div className="employee-table-controls">
       <div className="employee-table-top-left">
-        <label htmlFor="pageSize" className="search-entries">
+        <p className="search-entries">
           Show entries:{" "}
-        </label>
+        </p>
         <div className="custom-select-wrapper">
           <DropDown
             options={[

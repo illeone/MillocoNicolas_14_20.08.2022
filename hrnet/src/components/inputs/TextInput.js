@@ -12,6 +12,7 @@ const TextInput = ({
   error,
   isSubmitted,
   type = "text", // prop 'type' avec une valeur par défaut de 'text'
+  autoComplete,
 }) => {
   return (
     <div className="inputbox">
@@ -27,6 +28,7 @@ const TextInput = ({
         className={`inputbox ${inputClassName} ${
           isSubmitted && error ? "error-input error" : ""
         } ${value && isSubmitted ? "success" : ""}`}
+        autoComplete={autoComplete}
       />
       {isSubmitted && error && (
         <span

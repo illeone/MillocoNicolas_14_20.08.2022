@@ -32,6 +32,8 @@ const SearchBar = ({ onSearch }) => {
           className="search__input"
           ref={searchInputRef}
           onChange={handleSearchChange}
+          id="searchEmployee" 
+          name="searchEmployee"
         />
         <div
           className="search__button"

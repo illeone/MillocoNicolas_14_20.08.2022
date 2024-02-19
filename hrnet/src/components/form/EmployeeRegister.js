@@ -120,6 +120,7 @@ const EmployeeRegister = () => {
               inputClassName="first"
               error={!employee.firstName}
               isSubmitted={isSubmitted}
+              autoComplete="given-name"
             />
           </div>
           <div className="inputbox last">
@@ -133,6 +134,7 @@ const EmployeeRegister = () => {
               inputClassName="first"
               error={!employee.lastName}
               isSubmitted={isSubmitted}
+              autoComplete="family-name"
             />
           </div>
           <div className="dates">
@@ -173,6 +175,7 @@ const EmployeeRegister = () => {
               inputClassName="street"
               error={!employee.street}
               isSubmitted={isSubmitted}
+              autoComplete="address-line1"
             />
             <div>
               <TextInput
@@ -185,6 +188,7 @@ const EmployeeRegister = () => {
                 inputClassName="city"
                 error={!employee.city}
                 isSubmitted={isSubmitted}
+                autoComplete="address-level2"
               />
             </div>
             <div>
@@ -211,6 +215,7 @@ const EmployeeRegister = () => {
                 error={!employee.zipCode}
                 isSubmitted={isSubmitted}
                 type="number" // type 'number' pour le champ 'Zip Code'
+                autoComplete="postal-code"
               />
             </div>
             <div>

@@ -1,7 +1,6 @@
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import CustomLabel from '../form/CustomLabel';
 
 function DropDown({ options, onChange, value, name, isSubmitted }) {
   const listOptions = options.map((option, index) => (
@@ -23,6 +22,7 @@ function DropDown({ options, onChange, value, name, isSubmitted }) {
         className={`inputbox ${isError ? "error-input error" : ""} ${
           isSuccess ? "success" : ""
         }`}
+        aria-label="sélectionnez un affiche de 5, 10 ou 20 lignes par page"
       >
         {listOptions}
       </Select>

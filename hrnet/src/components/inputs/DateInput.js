@@ -1,6 +1,5 @@
 import React from "react";
 import { Calendar } from "primereact/calendar";
-import CustomLabel from "../form/CustomLabel";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -22,24 +21,22 @@ const DateInput = ({
 
   return (
     <div>
-      <CustomLabel htmlFor={id} className={labelClassName}>
-        {labelText}
-      </CustomLabel>
-      <div
-        className={`inputbox ${inputClassName} ${
-          isError ? "error-input input-error" : ""
-        } ${isSuccess ? "success" : ""}`}
-      >
+      <label htmlFor={id} className={labelClassName}>{labelText}</label>
+        <div
+          className={`
+              inputbox ${inputClassName} 
+              ${isError ? "error-input input-error" : ""} 
+              ${isSuccess ? "success" : ""}
+          `}
+        >
         <Calendar
-          id={id}
+          inputId={id}
           name={name}
           value={value}
           className="my-calendar"
           onChange={(e) => handleChange({ target: { name, value: e.value } })}
         />
-        {isError && (
-          <span className="error-text-date">* This field is required</span>
-        )}
+        {isError && <span className="error-text-date">* This field is required</span>}
       </div>
     </div>
   );
