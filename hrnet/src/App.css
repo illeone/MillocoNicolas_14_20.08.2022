@@ -658,12 +658,6 @@ th {
 
 /* *********************************  Search  ********************************* */
 
-/* @media screen and (min-width: 968px) {
-  body {
-    font-size: .875rem;
-  }
-} */
-
 .bloc-search{
   box-sizing: border-box;
   padding: 0;
