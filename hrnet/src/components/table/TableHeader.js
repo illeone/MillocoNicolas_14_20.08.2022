@@ -9,7 +9,8 @@ const TableHeader = ({ selectAll, handleSelectAll, renderTableHeader }) => {
               id="select-all"
               checked={selectAll}
               onChange={handleSelectAll}
-            />
+              ariaLabel="Sélectionner tous les employés"
+            />       
           </th>
           {renderTableHeader("First Name", "firstName")}
           {renderTableHeader("Last Name", "lastName")}

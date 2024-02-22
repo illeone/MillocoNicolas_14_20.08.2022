@@ -1,7 +1,13 @@
-const Checkbox = ({ id, checked, onChange }) => (
+const Checkbox = ({ id, checked, onChange, ariaLabel }) => (
     <div className="checkbox-wrapper-12">
       <div className="cbx">
-        <input id={`cbx-${id}`} type="checkbox" checked={checked} onChange={onChange} />
+        <input 
+          id={`cbx-${id}`} 
+          type="checkbox" 
+          checked={checked} 
+          onChange={onChange} 
+          aria-label={ariaLabel}
+        />
         <label htmlFor={`cbx-${id}`}></label>
         <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
           <path d="M2 8.36364L6.23077 12L13 2"></path>

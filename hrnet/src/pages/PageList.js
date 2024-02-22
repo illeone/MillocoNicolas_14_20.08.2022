@@ -6,7 +6,7 @@ import wave from "../images/wave.png";
 const EmployeeList = () => {
   return (
     <div className="employee-list-container">
-      <div className="container">
+      <header className="container">
         <div className="block-container">
           <div className="btn-back btn-back-1"></div>
           <div className="btn-front creased-text">HRnet</div>
@@ -20,7 +20,7 @@ const EmployeeList = () => {
               <p>Create Employee</p>
             </div>
         </NavLink>
-      </div>
+      </header>
       <div className="spacer">
         <div className="shapes-container">
           <div className="circle"></div>

@@ -76,7 +76,6 @@ const Table = () => {
     </th>
   );
 
-  // Fonction de tri
   const sortRows = (rows, field, ascending) => {
     return [...rows].sort((a, b) => {
       if (field === "") {
@@ -94,7 +93,6 @@ const Table = () => {
     });
   };
 
-  // Fonction de filtrage
   const filterRows = (rows, searchText) => {
     return rows.filter((row) => {
       return (

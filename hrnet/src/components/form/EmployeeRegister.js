@@ -26,7 +26,7 @@ const EmployeeRegister = () => {
   });
 
   useEffect(() => {
-    console.log(isOpen);
+    // console.log(isOpen);
   }, [isOpen]);
 
   const handleChange = (e) => {
@@ -34,7 +34,6 @@ const EmployeeRegister = () => {
       ...employee,
       [e.target.name]: e.target.value,
     });
-    console.log(employee);
   };
 
   const { addEmployee } = useEmployees();
@@ -42,8 +41,7 @@ const EmployeeRegister = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
-    console.log(employee);
-    // Vérifie que toutes les propriétés sont remplies
+
     if (
       !employee.firstName ||
       !employee.lastName ||
@@ -58,7 +56,6 @@ const EmployeeRegister = () => {
       // alert("Veuillez remplir tous les champs obligatoires.");
     } else {
 
-      //  toISOString pour convertir les dates avant de les enregistrer
       const newEmployee = {
         ...employee,
         dateOfBirth: employee.dateOfBirth
@@ -69,9 +66,8 @@ const EmployeeRegister = () => {
           : "",
       };
 
-      //  ajoute l'employé à l'état global
       addEmployee(newEmployee);
-      setIsOpen(true); // gère l'ouverture modal
+      setIsOpen(true);
     }
   };
 
