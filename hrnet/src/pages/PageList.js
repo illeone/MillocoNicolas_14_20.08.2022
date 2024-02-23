@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import Table from "../components/table/Table";
 import wave from "../images/wave.png";
 
 const EmployeeList = () => {
+
+  useEffect(() => {
+    document.title = "HRnet - Current Employees";
+  }, []);
+
   return (
     <div className="employee-list-container">
       <header className="container">

@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Button from '../components/buttons/ValidButton';
 
 function Error404() {
+
+  useEffect(() => {
+    document.title = "HRnet - page 404";
+  }, []);
+
     return (
       <section className="page-404">
         <div className="center-text">
